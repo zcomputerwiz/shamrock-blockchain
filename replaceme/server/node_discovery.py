@@ -37,7 +37,6 @@ class FullNodeDiscovery:
     def __init__(
         self,
         server: ReplacemeServer,
-        root_path: Path,
         target_outbound_count: int,
         peer_store_resolver: PeerStoreResolver,
         introducer_info: Optional[Dict],
