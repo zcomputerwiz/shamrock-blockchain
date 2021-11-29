@@ -58,7 +58,7 @@ except ImportError:
 
 log = logging.getLogger(__name__)
 
-service_plotter = "chia_plotter"
+service_plotter = "replaceme_plotter"
 
 
 async def fetch(url: str):
@@ -100,6 +100,9 @@ if getattr(sys, "frozen", False):
         "replaceme_timelord": "start_timelord",
         "replaceme_timelord_launcher": "timelord_launcher",
         "replaceme_full_node_simulator": "start_simulator",
+        "replaceme_seeder": "replaceme_seeder",
+        "replaceme_seeder_crawler": "replaceme_seeder_crawler",
+        "replaceme_seeder_dns": "replaceme_seeder_dns",
     }
 
     def executable_for_service(service_name: str) -> str:

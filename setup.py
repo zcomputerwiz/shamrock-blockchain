@@ -29,6 +29,7 @@ dependencies = [
     "click==7.1.2",  # For the CLI
     "dnspythonchia==2.2.0",  # Query DNS seeds
     "watchdog==2.1.6",  # Filesystem event watching - watches keyring.yaml
+    "dnslib==0.9.14",  # dns lib
 ]
 
 upnp_dependencies = [
@@ -86,6 +87,8 @@ kwargs = dict(
         "replaceme.pools",
         "replaceme.protocols",
         "replaceme.rpc",
+        "replaceme.seeder",
+        "replaceme.seeder.util",
         "replaceme.server",
         "replaceme.simulator",
         "replaceme.types.blockchain_format",
@@ -110,6 +113,9 @@ kwargs = dict(
             "replaceme_harvester = replaceme.server.start_harvester:main",
             "replaceme_farmer = replaceme.server.start_farmer:main",
             "replaceme_introducer = replaceme.server.start_introducer:main",
+            "replaceme_seeder = replaceme.cmds.seeder:main",
+            "replaceme_seeder_crawler = replaceme.seeder.start_crawler:main",
+            "replaceme_seeder_server = replaceme.seeder.dns_server:main",
             "replaceme_timelord = replaceme.server.start_timelord:main",
             "replaceme_timelord_launcher = replaceme.timelord.timelord_launcher:main",
             "replaceme_full_node_simulator = replaceme.simulator.start_simulator:main",
