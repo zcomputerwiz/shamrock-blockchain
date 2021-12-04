@@ -306,7 +306,7 @@ full_node:
   # List of trusted DNS seeders to bootstrap from.
   # If you modify this, please change the hardcode as well from FullNode.set_server()
   dns_servers:
-    - "dns-introducer.shamrock.networkwork"
+    - "dns-introducer.shamrock.network"
   farmer_peer:
       host: *self_hostname
       port: 9337
@@ -314,7 +314,7 @@ full_node:
       host: *self_hostname
       port: 9336
   introducer_peer:
-      host: dns-introducer.shamrock.networkwork  # Shamrock AWS introducer IPv4/IPv6
+      host: dns-introducer.shamrock.network  # Shamrock AWS introducer IPv4/IPv6
       port: 9443
   wallet_peer:
     host: *self_hostname
@@ -401,7 +401,7 @@ wallet:
   recent_peer_threshold: 6000
 
   introducer_peer:
-    host: dns-introducer.shamrock.networkwork # Shamrock AWS introducer IPv4/IPv6
+    host: dns-introducer.shamrock.network # Shamrock AWS introducer IPv4/IPv6
     port: 9443
 
   ssl:
