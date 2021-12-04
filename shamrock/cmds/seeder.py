@@ -97,7 +97,7 @@ def configure(
             print("Updating Shamrock Seeder to testnet settings")
             port = 58444
             network = "testnet7"
-            bootstrap = ["testnet-node.shamrock.net"]
+            bootstrap = ["testnet-node.shamrock.network"]
 
             config["seeder"]["port"] = port
             config["seeder"]["other_peers_port"] = port
@@ -110,7 +110,7 @@ def configure(
             print("Updating Shamrock Seeder to mainnet settings")
             port = 8444
             network = "mainnet"
-            bootstrap = ["node.shamrock.net"]
+            bootstrap = ["node.shamrock.network"]
 
             config["seeder"]["port"] = port
             config["seeder"]["other_peers_port"] = port

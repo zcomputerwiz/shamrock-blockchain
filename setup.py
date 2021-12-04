@@ -57,9 +57,9 @@ dev_dependencies = [
 kwargs = dict(
     name="shamrock-blockchain",
     author="Mariano Sorgente",
-    author_email="mariano@shamrock.net",
+    author_email="mariano@shamrock.network",
     description="Shamrock blockchain full node, farmer, timelord, and wallet.",
-    url="https://shamrock.net/",
+    url="https://shamrock.network/",
     license="Apache License",
     python_requires=">=3.7, <4",
     keywords="shamrock blockchain node",

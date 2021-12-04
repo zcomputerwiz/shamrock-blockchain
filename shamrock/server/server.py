@@ -732,7 +732,7 @@ class ShamrockServer:
         try:
             timeout = ClientTimeout(total=15)
             async with ClientSession(timeout=timeout) as session:
-                async with session.get("https://ip.shamrock.net/") as resp:
+                async with session.get("https://ip.shamrock.network/") as resp:
                     if resp.status == 200:
                         ip = str(await resp.text())
                         ip = ip.rstrip()
