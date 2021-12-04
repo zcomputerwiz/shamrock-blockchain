@@ -561,10 +561,10 @@ class Timelord:
                         is_transaction_block = last_block_ti < sp_total_iters
                         height = uint32(self.last_state.get_height() + 1)
 
-                    if height < 5:
-                        # Don't directly update our state for the first few blocks, because we cannot validate
-                        # whether the pre-farm is correct
-                        return None
+                    # if height < 5:
+                    #     # Don't directly update our state for the first few blocks, because we cannot validate
+                    #     # whether the pre-farm is correct
+                    #     return None
 
                     new_reward_chain_block = RewardChainBlock(
                         uint128(self.last_state.get_weight() + block.difficulty),
@@ -785,7 +785,7 @@ class Timelord:
         else:
             # If there were no failures recently trigger a reset after 60 seconds of no activity.
             # Signage points should be every 9 seconds
-            active_time_threshold = 60
+            active_time_threshold = 600
         if time.time() - self.last_active_time > active_time_threshold:
             log.error(f"Not active for {active_time_threshold} seconds, restarting all chains")
             await self._reset_chains()
