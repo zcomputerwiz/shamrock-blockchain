@@ -6,13 +6,13 @@ from typing import List
 
 import pytest
 
-from replaceme.full_node.weight_proof import _validate_sub_epoch_summaries
-from replaceme.protocols import full_node_protocol
-from replaceme.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from replaceme.types.full_block import FullBlock
-from replaceme.types.peer_info import PeerInfo
-from replaceme.util.hash import std_hash
-from replaceme.util.ints import uint16
+from shamrock.full_node.weight_proof import _validate_sub_epoch_summaries
+from shamrock.protocols import full_node_protocol
+from shamrock.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from shamrock.types.full_block import FullBlock
+from shamrock.types.peer_info import PeerInfo
+from shamrock.util.hash import std_hash
+from shamrock.util.ints import uint16
 from tests.core.node_height import node_height_exactly, node_height_between
 from tests.setup_nodes import bt, self_hostname, setup_n_nodes, setup_two_nodes, test_constants
 from tests.time_out_assert import time_out_assert

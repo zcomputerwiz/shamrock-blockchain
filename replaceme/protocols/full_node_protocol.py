@@ -1,16 +1,16 @@
 from dataclasses import dataclass
 from typing import List, Optional
 
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.vdf import VDFInfo, VDFProof
-from replaceme.types.end_of_slot_bundle import EndOfSubSlotBundle
-from replaceme.types.full_block import FullBlock
-from replaceme.types.peer_info import TimestampedPeerInfo
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.types.unfinished_block import UnfinishedBlock
-from replaceme.types.weight_proof import WeightProof
-from replaceme.util.ints import uint8, uint32, uint64, uint128
-from replaceme.util.streamable import Streamable, streamable
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.blockchain_format.vdf import VDFInfo, VDFProof
+from shamrock.types.end_of_slot_bundle import EndOfSubSlotBundle
+from shamrock.types.full_block import FullBlock
+from shamrock.types.peer_info import TimestampedPeerInfo
+from shamrock.types.spend_bundle import SpendBundle
+from shamrock.types.unfinished_block import UnfinishedBlock
+from shamrock.types.weight_proof import WeightProof
+from shamrock.util.ints import uint8, uint32, uint64, uint128
+from shamrock.util.streamable import Streamable, streamable
 
 """
 Protocol between full nodes.

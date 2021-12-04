@@ -1,8 +1,8 @@
 from typing import Any, Dict
 
-from replaceme.wallet.key_val_store import KeyValStore
-from replaceme.wallet.settings.default_settings import default_settings
-from replaceme.wallet.settings.settings_objects import BackupInitialized
+from shamrock.wallet.key_val_store import KeyValStore
+from shamrock.wallet.settings.default_settings import default_settings
+from shamrock.wallet.settings.settings_objects import BackupInitialized
 
 
 class UserSettings:

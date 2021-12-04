@@ -4,22 +4,22 @@ from typing import Dict
 
 import click
 
-import replaceme.cmds.configure as replaceme_configure
-from replaceme import __version__
-from replaceme.cmds.replaceme import monkey_patch_click
-from replaceme.cmds.init_funcs import init
-from replaceme.seeder.util.config import patch_default_seeder_config
-from replaceme.seeder.util.service_groups import all_groups, services_for_groups
-from replaceme.seeder.util.service import launch_service, kill_service
-from replaceme.util.config import load_config, save_config
-from replaceme.util.default_root import DEFAULT_ROOT_PATH
+import shamrock.cmds.configure as shamrock_configure
+from shamrock import __version__
+from shamrock.cmds.shamrock import monkey_patch_click
+from shamrock.cmds.init_funcs import init
+from shamrock.seeder.util.config import patch_default_seeder_config
+from shamrock.seeder.util.service_groups import all_groups, services_for_groups
+from shamrock.seeder.util.service import launch_service, kill_service
+from shamrock.util.config import load_config, save_config
+from shamrock.util.default_root import DEFAULT_ROOT_PATH
 
 CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
 
 
 @click.group(
-    help=f"\n  Manage the Replaceme Seeder ({__version__})\n",
-    epilog="Try 'replaceme seeder start crawler' or 'replaceme seeder start server'",
+    help=f"\n  Manage the Shamrock Seeder ({__version__})\n",
+    epilog="Try 'shamrock seeder start crawler' or 'shamrock seeder start server'",
     context_settings=CONTEXT_SETTINGS,
 )
 @click.option("--root-path", default=DEFAULT_ROOT_PATH, help="Config file root", type=click.Path(), show_default=True)
@@ -34,7 +34,7 @@ def cli(
     ctx.obj["root_path"] = Path(root_path)
 
 
-@cli.command("version", short_help="Show the Replaceme Seeder version")
+@cli.command("version", short_help="Show the Shamrock Seeder version")
 def version_cmd() -> None:
     print(__version__)
 
@@ -42,15 +42,15 @@ def version_cmd() -> None:
 @click.command("init", short_help="Create or migrate the configuration")
 @click.pass_context
 def init_cmd(ctx: click.Context, **kwargs):
-    print("Calling Replaceme Seeder Init...")
+    print("Calling Shamrock Seeder Init...")
     init(None, ctx.obj["root_path"], True)
-    if os.environ.get("REPLACEME_ROOT", None) is not None:
-        print(f"warning, your REPLACEME_ROOT is set to {os.environ['REPLACEME_ROOT']}.")
+    if os.environ.get("SHAMROCK_ROOT", None) is not None:
+        print(f"warning, your SHAMROCK_ROOT is set to {os.environ['SHAMROCK_ROOT']}.")
     root_path = ctx.obj["root_path"]
-    print(f"Replaceme directory {root_path}")
+    print(f"Shamrock directory {root_path}")
     if root_path.is_dir() and not Path(root_path / "config" / "config.yaml").exists():
-        # This is reached if REPLACEME_ROOT is set, but there is no config
-        # This really shouldn't happen, but if we dont have the base replaceme config, we can't continue
+        # This is reached if SHAMROCK_ROOT is set, but there is no config
+        # This really shouldn't happen, but if we dont have the base shamrock config, we can't continue
         print("Config does not exist. Can't continue!")
         return -1
     patch_default_seeder_config(root_path)
@@ -88,16 +88,16 @@ def configure(
     nameserver: str,
 ):
     # Run the parent config, in case anything there (testnet) needs to be run, THEN load the config for local changes
-    replaceme_configure.configure(root_path, "", "", "", "", "", "", "", "", testnet, "")
+    shamrock_configure.configure(root_path, "", "", "", "", "", "", "", "", testnet, "")
 
     config: Dict = load_config(DEFAULT_ROOT_PATH, "config.yaml")
     change_made = False
     if testnet is not None:
         if testnet == "true" or testnet == "t":
-            print("Updating Replaceme Seeder to testnet settings")
+            print("Updating Shamrock Seeder to testnet settings")
             port = 58444
             network = "testnet7"
-            bootstrap = ["testnet-node.replaceme.net"]
+            bootstrap = ["testnet-node.shamrock.net"]
 
             config["seeder"]["port"] = port
             config["seeder"]["other_peers_port"] = port
@@ -107,10 +107,10 @@ def configure(
             change_made = True
 
         elif testnet == "false" or testnet == "f":
-            print("Updating Replaceme Seeder to mainnet settings")
+            print("Updating Shamrock Seeder to mainnet settings")
             port = 8444
             network = "mainnet"
-            bootstrap = ["node.replaceme.net"]
+            bootstrap = ["node.shamrock.net"]
 
             config["seeder"]["port"] = port
             config["seeder"]["other_peers_port"] = port
@@ -138,7 +138,7 @@ def configure(
         change_made = True
 
     if change_made:
-        print("Restart any running Replaceme Seeder services for changes to take effect")
+        print("Restart any running Shamrock Seeder services for changes to take effect")
         save_config(root_path, "config.yaml", config)
     return 0
 

@@ -1,8 +1,8 @@
 from typing import Tuple
 
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.consensus.blockchain_interface import BlockchainInterface
-from replaceme.util.ints import uint128
+from shamrock.consensus.block_record import BlockRecord
+from shamrock.consensus.blockchain_interface import BlockchainInterface
+from shamrock.util.ints import uint128
 
 
 def get_prev_transaction_block(

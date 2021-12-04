@@ -1,19 +1,19 @@
 from typing import KeysView, Generator
 
 SERVICES_FOR_GROUP = {
-    "all": "replaceme_harvester replaceme_timelord_launcher replaceme_timelord replaceme_farmer replaceme_full_node replaceme_wallet".split(),
-    "node": "replaceme_full_node".split(),
-    "harvester": "replaceme_harvester".split(),
-    "farmer": "replaceme_harvester replaceme_farmer replaceme_full_node replaceme_wallet".split(),
-    "farmer-no-wallet": "replaceme_harvester replaceme_farmer replaceme_full_node".split(),
-    "farmer-only": "replaceme_farmer".split(),
-    "timelord": "replaceme_timelord_launcher replaceme_timelord replaceme_full_node".split(),
-    "timelord-only": "replaceme_timelord".split(),
-    "timelord-launcher-only": "replaceme_timelord_launcher".split(),
-    "wallet": "replaceme_wallet replaceme_full_node".split(),
-    "wallet-only": "replaceme_wallet".split(),
-    "introducer": "replaceme_introducer".split(),
-    "simulator": "replaceme_full_node_simulator".split(),
+    "all": "shamrock_harvester shamrock_timelord_launcher shamrock_timelord shamrock_farmer shamrock_full_node shamrock_wallet".split(),
+    "node": "shamrock_full_node".split(),
+    "harvester": "shamrock_harvester".split(),
+    "farmer": "shamrock_harvester shamrock_farmer shamrock_full_node shamrock_wallet".split(),
+    "farmer-no-wallet": "shamrock_harvester shamrock_farmer shamrock_full_node".split(),
+    "farmer-only": "shamrock_farmer".split(),
+    "timelord": "shamrock_timelord_launcher shamrock_timelord shamrock_full_node".split(),
+    "timelord-only": "shamrock_timelord".split(),
+    "timelord-launcher-only": "shamrock_timelord_launcher".split(),
+    "wallet": "shamrock_wallet shamrock_full_node".split(),
+    "wallet-only": "shamrock_wallet".split(),
+    "introducer": "shamrock_introducer".split(),
+    "simulator": "shamrock_full_node_simulator".split(),
 }
 
 

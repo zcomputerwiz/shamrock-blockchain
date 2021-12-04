@@ -15,17 +15,17 @@ from blspy import G2Element
 
 from clvm_tools.binutils import assemble
 
-from replaceme.consensus.blockchain import ReceiveBlockResult
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.types.announcement import Announcement
-from replaceme.types.blockchain_format.program import Program
-from replaceme.types.coin_record import CoinRecord
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.condition_opcodes import ConditionOpcode
-from replaceme.types.full_block import FullBlock
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.util.errors import Err
-from replaceme.util.ints import uint32
+from shamrock.consensus.blockchain import ReceiveBlockResult
+from shamrock.consensus.constants import ConsensusConstants
+from shamrock.types.announcement import Announcement
+from shamrock.types.blockchain_format.program import Program
+from shamrock.types.coin_record import CoinRecord
+from shamrock.types.coin_spend import CoinSpend
+from shamrock.types.condition_opcodes import ConditionOpcode
+from shamrock.types.full_block import FullBlock
+from shamrock.types.spend_bundle import SpendBundle
+from shamrock.util.errors import Err
+from shamrock.util.ints import uint32
 from tests.block_tools import create_block_tools, test_constants
 from tests.util.keyring import TempKeyring
 

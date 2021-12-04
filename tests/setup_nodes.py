@@ -5,25 +5,25 @@ import signal
 from secrets import token_bytes
 from typing import Dict, List, Optional
 
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.daemon.server import WebSocketServer, create_server_for_daemon, daemon_launch_lock_path, singleton
-from replaceme.full_node.full_node_api import FullNodeAPI
-from replaceme.server.start_farmer import service_kwargs_for_farmer
-from replaceme.server.start_full_node import service_kwargs_for_full_node
-from replaceme.server.start_harvester import service_kwargs_for_harvester
-from replaceme.server.start_introducer import service_kwargs_for_introducer
-from replaceme.server.start_service import Service
-from replaceme.server.start_timelord import service_kwargs_for_timelord
-from replaceme.server.start_wallet import service_kwargs_for_wallet
-from replaceme.simulator.start_simulator import service_kwargs_for_full_node_simulator
-from replaceme.timelord.timelord_launcher import kill_processes, spawn_process
-from replaceme.types.peer_info import PeerInfo
-from replaceme.util.bech32m import encode_puzzle_hash
+from shamrock.consensus.constants import ConsensusConstants
+from shamrock.daemon.server import WebSocketServer, create_server_for_daemon, daemon_launch_lock_path, singleton
+from shamrock.full_node.full_node_api import FullNodeAPI
+from shamrock.server.start_farmer import service_kwargs_for_farmer
+from shamrock.server.start_full_node import service_kwargs_for_full_node
+from shamrock.server.start_harvester import service_kwargs_for_harvester
+from shamrock.server.start_introducer import service_kwargs_for_introducer
+from shamrock.server.start_service import Service
+from shamrock.server.start_timelord import service_kwargs_for_timelord
+from shamrock.server.start_wallet import service_kwargs_for_wallet
+from shamrock.simulator.start_simulator import service_kwargs_for_full_node_simulator
+from shamrock.timelord.timelord_launcher import kill_processes, spawn_process
+from shamrock.types.peer_info import PeerInfo
+from shamrock.util.bech32m import encode_puzzle_hash
 from tests.block_tools import create_block_tools, create_block_tools_async, test_constants
 from tests.util.keyring import TempKeyring
-from replaceme.util.hash import std_hash
-from replaceme.util.ints import uint16, uint32
-from replaceme.util.keychain import bytes_to_mnemonic
+from shamrock.util.hash import std_hash
+from shamrock.util.ints import uint16, uint32
+from shamrock.util.keychain import bytes_to_mnemonic
 from tests.time_out_assert import time_out_assert_custom_interval
 
 
@@ -217,10 +217,10 @@ async def setup_farmer(
     config = bt.config["farmer"]
     config_pool = bt.config["pool"]
 
-    config["xch_target_address"] = encode_puzzle_hash(b_tools.farmer_ph, "xch")
+    config["srn_target_address"] = encode_puzzle_hash(b_tools.farmer_ph, "srn")
     config["pool_public_keys"] = [bytes(pk).hex() for pk in b_tools.pool_pubkeys]
     config["port"] = port
-    config_pool["xch_target_address"] = encode_puzzle_hash(b_tools.pool_ph, "xch")
+    config_pool["srn_target_address"] = encode_puzzle_hash(b_tools.pool_ph, "srn")
 
     if full_node_port:
         config["full_node_peer"]["host"] = self_hostname

@@ -3,11 +3,11 @@ from typing import List, Optional
 
 from blspy import G2Element
 
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.pool_target import PoolTarget
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.util.ints import uint64
-from replaceme.util.streamable import Streamable, streamable
+from shamrock.types.blockchain_format.coin import Coin
+from shamrock.types.blockchain_format.pool_target import PoolTarget
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.util.ints import uint64
+from shamrock.util.streamable import Streamable, streamable
 
 
 @dataclass(frozen=True)

@@ -1,7 +1,7 @@
 from typing import Dict
 
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.mempool_item import MempoolItem
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.mempool_item import MempoolItem
 
 
 class PendingTxCache:

@@ -3,16 +3,16 @@ from typing import Dict, List, Optional, Tuple
 
 import aiosqlite
 
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.header_block import HeaderBlock
-from replaceme.util.db_wrapper import DBWrapper
-from replaceme.util.ints import uint32, uint64
-from replaceme.util.lru_cache import LRUCache
-from replaceme.util.streamable import Streamable, streamable
-from replaceme.wallet.block_record import HeaderBlockRecord
+from shamrock.consensus.block_record import BlockRecord
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from shamrock.types.coin_spend import CoinSpend
+from shamrock.types.header_block import HeaderBlock
+from shamrock.util.db_wrapper import DBWrapper
+from shamrock.util.ints import uint32, uint64
+from shamrock.util.lru_cache import LRUCache
+from shamrock.util.streamable import Streamable, streamable
+from shamrock.wallet.block_record import HeaderBlockRecord
 
 
 @dataclass(frozen=True)

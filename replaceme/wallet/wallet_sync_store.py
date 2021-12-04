@@ -2,9 +2,9 @@ import asyncio
 import logging
 from typing import Dict, List, Optional, Tuple
 
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.header_block import HeaderBlock
-from replaceme.util.ints import uint32
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.header_block import HeaderBlock
+from shamrock.util.ints import uint32
 
 log = logging.getLogger(__name__)
 

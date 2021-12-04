@@ -1,12 +1,12 @@
 from typing import List, Optional
 
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.full_node.full_node_api import FullNodeAPI
-from replaceme.protocols.full_node_protocol import RespondBlock
-from replaceme.simulator.simulator_protocol import FarmNewBlockProtocol, ReorgProtocol
-from replaceme.types.full_block import FullBlock
-from replaceme.util.api_decorators import api_request
-from replaceme.util.ints import uint8
+from shamrock.consensus.block_record import BlockRecord
+from shamrock.full_node.full_node_api import FullNodeAPI
+from shamrock.protocols.full_node_protocol import RespondBlock
+from shamrock.simulator.simulator_protocol import FarmNewBlockProtocol, ReorgProtocol
+from shamrock.types.full_block import FullBlock
+from shamrock.util.api_decorators import api_request
+from shamrock.util.ints import uint8
 
 
 class FullNodeSimulator(FullNodeAPI):

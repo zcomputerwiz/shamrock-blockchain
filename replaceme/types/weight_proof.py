@@ -1,14 +1,14 @@
 from dataclasses import dataclass
 from typing import List, Optional
 
-from replaceme.types.blockchain_format.proof_of_space import ProofOfSpace
-from replaceme.types.blockchain_format.reward_chain_block import RewardChainBlock
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.vdf import VDFInfo, VDFProof
-from replaceme.types.end_of_slot_bundle import EndOfSubSlotBundle
-from replaceme.types.header_block import HeaderBlock
-from replaceme.util.ints import uint8, uint32, uint64, uint128
-from replaceme.util.streamable import Streamable, streamable
+from shamrock.types.blockchain_format.proof_of_space import ProofOfSpace
+from shamrock.types.blockchain_format.reward_chain_block import RewardChainBlock
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.blockchain_format.vdf import VDFInfo, VDFProof
+from shamrock.types.end_of_slot_bundle import EndOfSubSlotBundle
+from shamrock.types.header_block import HeaderBlock
+from shamrock.util.ints import uint8, uint32, uint64, uint128
+from shamrock.util.streamable import Streamable, streamable
 
 
 @dataclass(frozen=True)

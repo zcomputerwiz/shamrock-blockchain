@@ -5,10 +5,10 @@ from typing import List
 
 from blspy import G1Element
 
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.util.byte_types import hexstr_to_bytes
-from replaceme.util.config import load_config, save_config
-from replaceme.util.streamable import Streamable, streamable
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.util.byte_types import hexstr_to_bytes
+from shamrock.util.config import load_config, save_config
+from shamrock.util.streamable import Streamable, streamable
 
 """
 Config example

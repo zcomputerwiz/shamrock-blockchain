@@ -1,5 +1,5 @@
 import pytest
-from replaceme.util.generator_tools import list_to_batches
+from shamrock.util.generator_tools import list_to_batches
 
 
 def test_empty_lists():

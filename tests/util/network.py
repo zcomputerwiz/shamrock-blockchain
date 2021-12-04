@@ -1,5 +1,5 @@
 import pytest
-from replaceme.util.network import get_host_addr
+from shamrock.util.network import get_host_addr
 
 
 class TestNetwork:

@@ -5,28 +5,28 @@ from concurrent.futures.process import ProcessPoolExecutor
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Sequence, Tuple, Union, Callable
 
-from replaceme.consensus.block_header_validation import validate_finished_header_block
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.consensus.blockchain_interface import BlockchainInterface
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.consensus.cost_calculator import NPCResult
-from replaceme.consensus.difficulty_adjustment import get_next_sub_slot_iters_and_difficulty
-from replaceme.consensus.full_block_to_block_record import block_to_block_record
-from replaceme.consensus.get_block_challenge import get_block_challenge
-from replaceme.consensus.pot_iterations import calculate_iterations_quality, is_overflow_block
-from replaceme.full_node.mempool_check_conditions import get_name_puzzle_conditions
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from replaceme.types.full_block import FullBlock
-from replaceme.types.generator_types import BlockGenerator
-from replaceme.types.header_block import HeaderBlock
-from replaceme.types.unfinished_block import UnfinishedBlock
-from replaceme.util.block_cache import BlockCache
-from replaceme.util.errors import Err, ValidationError
-from replaceme.util.generator_tools import get_block_header, tx_removals_and_additions
-from replaceme.util.ints import uint16, uint64, uint32
-from replaceme.util.streamable import Streamable, dataclass_from_dict, streamable
+from shamrock.consensus.block_header_validation import validate_finished_header_block
+from shamrock.consensus.block_record import BlockRecord
+from shamrock.consensus.blockchain_interface import BlockchainInterface
+from shamrock.consensus.constants import ConsensusConstants
+from shamrock.consensus.cost_calculator import NPCResult
+from shamrock.consensus.difficulty_adjustment import get_next_sub_slot_iters_and_difficulty
+from shamrock.consensus.full_block_to_block_record import block_to_block_record
+from shamrock.consensus.get_block_challenge import get_block_challenge
+from shamrock.consensus.pot_iterations import calculate_iterations_quality, is_overflow_block
+from shamrock.full_node.mempool_check_conditions import get_name_puzzle_conditions
+from shamrock.types.blockchain_format.coin import Coin
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from shamrock.types.full_block import FullBlock
+from shamrock.types.generator_types import BlockGenerator
+from shamrock.types.header_block import HeaderBlock
+from shamrock.types.unfinished_block import UnfinishedBlock
+from shamrock.util.block_cache import BlockCache
+from shamrock.util.errors import Err, ValidationError
+from shamrock.util.generator_tools import get_block_header, tx_removals_and_additions
+from shamrock.util.ints import uint16, uint64, uint32
+from shamrock.util.streamable import Streamable, dataclass_from_dict, streamable
 
 log = logging.getLogger(__name__)
 

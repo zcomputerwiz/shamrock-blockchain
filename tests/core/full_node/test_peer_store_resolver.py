@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import Dict
 
-from replaceme.server.peer_store_resolver import PeerStoreResolver
+from shamrock.server.peer_store_resolver import PeerStoreResolver
 
 
 class TestPeerStoreResolver:

@@ -8,7 +8,7 @@ from typing import List, Dict
 
 import aiosqlite
 
-from replaceme.seeder.peer_record import PeerRecord, PeerReliability
+from shamrock.seeder.peer_record import PeerRecord, PeerReliability
 
 log = logging.getLogger(__name__)
 

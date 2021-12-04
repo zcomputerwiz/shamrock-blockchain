@@ -8,8 +8,8 @@ from typing import Dict, List, Optional, Tuple, Union
 from blspy import G1Element, PrivateKey
 from chiapos import DiskProver
 
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.util.config import load_config, save_config
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.util.config import load_config, save_config
 
 log = logging.getLogger(__name__)
 

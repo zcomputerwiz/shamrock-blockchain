@@ -1,14 +1,14 @@
 from dataclasses import dataclass
 from typing import List, Optional, Tuple
 
-from replaceme.consensus.coinbase import pool_parent_id, farmer_parent_id
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.mempool_inclusion_status import MempoolInclusionStatus
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.util.ints import uint8, uint32, uint64
-from replaceme.util.streamable import Streamable, streamable
-from replaceme.wallet.util.transaction_type import TransactionType
+from shamrock.consensus.coinbase import pool_parent_id, farmer_parent_id
+from shamrock.types.blockchain_format.coin import Coin
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.mempool_inclusion_status import MempoolInclusionStatus
+from shamrock.types.spend_bundle import SpendBundle
+from shamrock.util.ints import uint8, uint32, uint64
+from shamrock.util.streamable import Streamable, streamable
+from shamrock.wallet.util.transaction_type import TransactionType
 
 
 @dataclass(frozen=True)

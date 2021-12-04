@@ -1,12 +1,12 @@
 from typing import List, Optional
 
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.consensus.blockchain_interface import BlockchainInterface
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.types.blockchain_format.classgroup import ClassgroupElement
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.end_of_slot_bundle import EndOfSubSlotBundle
-from replaceme.util.ints import uint64, uint128
+from shamrock.consensus.block_record import BlockRecord
+from shamrock.consensus.blockchain_interface import BlockchainInterface
+from shamrock.consensus.constants import ConsensusConstants
+from shamrock.types.blockchain_format.classgroup import ClassgroupElement
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.end_of_slot_bundle import EndOfSubSlotBundle
+from shamrock.util.ints import uint64, uint128
 
 
 def get_signage_point_vdf_info(

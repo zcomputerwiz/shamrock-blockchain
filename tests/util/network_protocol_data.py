@@ -1,33 +1,33 @@
 # flake8: noqa
 
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.util.ints import uint8, uint16, uint32, uint64, uint128
-from replaceme.types.blockchain_format.proof_of_space import ProofOfSpace
-from replaceme.types.blockchain_format.pool_target import PoolTarget
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.types.blockchain_format.program import Program, SerializedProgram
-from replaceme.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from replaceme.types.weight_proof import WeightProof, SubEpochData, SubEpochChallengeSegment, SubSlotData, RecentChainData
-from replaceme.types.blockchain_format.vdf import VDFInfo, VDFProof
-from replaceme.types.blockchain_format.classgroup import ClassgroupElement
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.util.ints import uint8, uint16, uint32, uint64, uint128
+from shamrock.types.blockchain_format.proof_of_space import ProofOfSpace
+from shamrock.types.blockchain_format.pool_target import PoolTarget
+from shamrock.types.coin_spend import CoinSpend
+from shamrock.types.blockchain_format.coin import Coin
+from shamrock.types.spend_bundle import SpendBundle
+from shamrock.types.blockchain_format.program import Program, SerializedProgram
+from shamrock.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from shamrock.types.weight_proof import WeightProof, SubEpochData, SubEpochChallengeSegment, SubSlotData, RecentChainData
+from shamrock.types.blockchain_format.vdf import VDFInfo, VDFProof
+from shamrock.types.blockchain_format.classgroup import ClassgroupElement
 from blspy import G1Element, G2Element
-from replaceme.types.header_block import HeaderBlock
-from replaceme.types.full_block import FullBlock
-from replaceme.types.unfinished_block import UnfinishedBlock
-from replaceme.types.blockchain_format.slots import (
+from shamrock.types.header_block import HeaderBlock
+from shamrock.types.full_block import FullBlock
+from shamrock.types.unfinished_block import UnfinishedBlock
+from shamrock.types.blockchain_format.slots import (
     ChallengeChainSubSlot,
     InfusedChallengeChainSubSlot,
     RewardChainSubSlot,
     SubSlotProofs,
 )
-from replaceme.types.end_of_slot_bundle import EndOfSubSlotBundle
-from replaceme.types.peer_info import TimestampedPeerInfo
-from replaceme.types.blockchain_format.reward_chain_block import RewardChainBlock
-from replaceme.types.blockchain_format.foliage import Foliage, FoliageTransactionBlock, FoliageBlockData, TransactionsInfo
+from shamrock.types.end_of_slot_bundle import EndOfSubSlotBundle
+from shamrock.types.peer_info import TimestampedPeerInfo
+from shamrock.types.blockchain_format.reward_chain_block import RewardChainBlock
+from shamrock.types.blockchain_format.foliage import Foliage, FoliageTransactionBlock, FoliageBlockData, TransactionsInfo
 
-from replaceme.protocols import (
+from shamrock.protocols import (
     farmer_protocol,
     full_node_protocol,
     harvester_protocol,

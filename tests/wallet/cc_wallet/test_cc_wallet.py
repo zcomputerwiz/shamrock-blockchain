@@ -3,18 +3,18 @@ from typing import List
 
 import pytest
 
-from replaceme.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
-from replaceme.full_node.mempool_manager import MempoolManager
-from replaceme.simulator.simulator_protocol import FarmNewBlockProtocol
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.peer_info import PeerInfo
-from replaceme.util.ints import uint16, uint32, uint64
-from replaceme.wallet.cc_wallet.cc_utils import cc_puzzle_hash_for_inner_puzzle_hash
-from replaceme.wallet.cc_wallet.cc_wallet import CCWallet
-from replaceme.wallet.puzzles.cc_loader import CC_MOD
-from replaceme.wallet.transaction_record import TransactionRecord
-from replaceme.wallet.wallet_coin_record import WalletCoinRecord
+from shamrock.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
+from shamrock.full_node.mempool_manager import MempoolManager
+from shamrock.simulator.simulator_protocol import FarmNewBlockProtocol
+from shamrock.types.blockchain_format.coin import Coin
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.peer_info import PeerInfo
+from shamrock.util.ints import uint16, uint32, uint64
+from shamrock.wallet.cc_wallet.cc_utils import cc_puzzle_hash_for_inner_puzzle_hash
+from shamrock.wallet.cc_wallet.cc_wallet import CCWallet
+from shamrock.wallet.puzzles.cc_loader import CC_MOD
+from shamrock.wallet.transaction_record import TransactionRecord
+from shamrock.wallet.wallet_coin_record import WalletCoinRecord
 from tests.setup_nodes import setup_simulators_and_wallets
 from tests.time_out_assert import time_out_assert
 

@@ -7,14 +7,14 @@ from typing import Any, Callable, Dict, List, Optional
 
 import aiohttp
 
-from replaceme.rpc.util import wrap_http_handler
-from replaceme.server.outbound_message import NodeType
-from replaceme.server.server import ssl_context_for_server
-from replaceme.types.peer_info import PeerInfo
-from replaceme.util.byte_types import hexstr_to_bytes
-from replaceme.util.ints import uint16
-from replaceme.util.json_util import dict_to_json_str
-from replaceme.util.ws_message import create_payload, create_payload_dict, format_response, pong
+from shamrock.rpc.util import wrap_http_handler
+from shamrock.server.outbound_message import NodeType
+from shamrock.server.server import ssl_context_for_server
+from shamrock.types.peer_info import PeerInfo
+from shamrock.util.byte_types import hexstr_to_bytes
+from shamrock.util.ints import uint16
+from shamrock.util.json_util import dict_to_json_str
+from shamrock.util.ws_message import create_payload, create_payload_dict, format_response, pong
 
 log = logging.getLogger(__name__)
 

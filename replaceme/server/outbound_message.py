@@ -2,9 +2,9 @@ from dataclasses import dataclass
 from enum import IntEnum
 from typing import Any, Optional
 
-from replaceme.protocols.protocol_message_types import ProtocolMessageTypes
-from replaceme.util.ints import uint8, uint16
-from replaceme.util.streamable import Streamable, streamable
+from shamrock.protocols.protocol_message_types import ProtocolMessageTypes
+from shamrock.util.ints import uint8, uint16
+from shamrock.util.streamable import Streamable, streamable
 
 
 class NodeType(IntEnum):

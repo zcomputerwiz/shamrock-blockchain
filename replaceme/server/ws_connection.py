@@ -6,26 +6,26 @@ from typing import Any, Callable, Dict, List, Optional
 
 from aiohttp import WSCloseCode, WSMessage, WSMsgType
 
-from replaceme.cmds.init_funcs import replaceme_full_version_str
-from replaceme.protocols.protocol_message_types import ProtocolMessageTypes
-from replaceme.protocols.protocol_state_machine import message_response_ok
-from replaceme.protocols.protocol_timing import INTERNAL_PROTOCOL_ERROR_BAN_SECONDS
-from replaceme.protocols.shared_protocol import Capability, Handshake
-from replaceme.server.outbound_message import Message, NodeType, make_msg
-from replaceme.server.rate_limits import RateLimiter
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.peer_info import PeerInfo
-from replaceme.util.errors import Err, ProtocolError
-from replaceme.util.ints import uint8, uint16
+from shamrock.cmds.init_funcs import shamrock_full_version_str
+from shamrock.protocols.protocol_message_types import ProtocolMessageTypes
+from shamrock.protocols.protocol_state_machine import message_response_ok
+from shamrock.protocols.protocol_timing import INTERNAL_PROTOCOL_ERROR_BAN_SECONDS
+from shamrock.protocols.shared_protocol import Capability, Handshake
+from shamrock.server.outbound_message import Message, NodeType, make_msg
+from shamrock.server.rate_limits import RateLimiter
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.peer_info import PeerInfo
+from shamrock.util.errors import Err, ProtocolError
+from shamrock.util.ints import uint8, uint16
 
 # Each message is prepended with LENGTH_BYTES bytes specifying the length
-from replaceme.util.network import class_for_type, is_localhost
+from shamrock.util.network import class_for_type, is_localhost
 
 # Max size 2^(8*4) which is around 4GiB
 LENGTH_BYTES: int = 4
 
 
-class WSReplacemeConnection:
+class WSShamrockConnection:
     """
     Represents a connection to another node. Local host and port are ours, while peer host and
     port are the host and port of the peer that we are connected to. Node_id and connection_type are
@@ -71,7 +71,7 @@ class WSReplacemeConnection:
         self.is_outbound = is_outbound
         self.is_feeler = is_feeler
 
-        # ReplacemeConnection metrics
+        # ShamrockConnection metrics
         self.creation_time = time.time()
         self.bytes_read = 0
         self.bytes_written = 0
@@ -105,7 +105,7 @@ class WSReplacemeConnection:
         self.outbound_rate_limiter = RateLimiter(incoming=False, percentage_of_limit=outbound_rate_limit_percent)
         self.inbound_rate_limiter = RateLimiter(incoming=True, percentage_of_limit=inbound_rate_limit_percent)
 
-        # Used by the Replaceme Seeder.
+        # Used by the Shamrock Seeder.
         self.version = None
 
     async def perform_handshake(self, network_id: str, protocol_version: str, server_port: int, local_type: NodeType):
@@ -115,7 +115,7 @@ class WSReplacemeConnection:
                 Handshake(
                     network_id,
                     protocol_version,
-                    replaceme_full_version_str(),
+                    shamrock_full_version_str(),
                     uint16(server_port),
                     uint8(local_type.value),
                     [(uint16(Capability.BASE.value), "1")],
@@ -171,7 +171,7 @@ class WSReplacemeConnection:
                 Handshake(
                     network_id,
                     protocol_version,
-                    replaceme_full_version_str(),
+                    shamrock_full_version_str(),
                     uint16(server_port),
                     uint8(local_type.value),
                     [(uint16(Capability.BASE.value), "1")],
@@ -486,7 +486,7 @@ class WSReplacemeConnection:
             await asyncio.sleep(3)
         return None
 
-    # Used by the Replaceme Seeder.
+    # Used by the Shamrock Seeder.
     def get_version(self):
         return self.version
 

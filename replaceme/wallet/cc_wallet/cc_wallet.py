@@ -8,23 +8,23 @@ from typing import Any, Dict, List, Optional, Set
 
 from blspy import AugSchemeMPL, G2Element
 
-from replaceme.consensus.cost_calculator import calculate_cost_of_program, NPCResult
-from replaceme.full_node.bundle_tools import simple_solution_generator
-from replaceme.full_node.mempool_check_conditions import get_name_puzzle_conditions
-from replaceme.protocols.wallet_protocol import PuzzleSolutionResponse
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.program import Program
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.generator_types import BlockGenerator
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.util.byte_types import hexstr_to_bytes
-from replaceme.util.condition_tools import conditions_dict_for_solution, pkm_pairs_for_conditions_dict
-from replaceme.util.ints import uint8, uint32, uint64, uint128
-from replaceme.util.json_util import dict_to_json_str
-from replaceme.wallet.block_record import HeaderBlockRecord
-from replaceme.wallet.cc_wallet.cc_info import CCInfo
-from replaceme.wallet.cc_wallet.cc_utils import (
+from shamrock.consensus.cost_calculator import calculate_cost_of_program, NPCResult
+from shamrock.full_node.bundle_tools import simple_solution_generator
+from shamrock.full_node.mempool_check_conditions import get_name_puzzle_conditions
+from shamrock.protocols.wallet_protocol import PuzzleSolutionResponse
+from shamrock.types.blockchain_format.coin import Coin
+from shamrock.types.blockchain_format.program import Program
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.coin_spend import CoinSpend
+from shamrock.types.generator_types import BlockGenerator
+from shamrock.types.spend_bundle import SpendBundle
+from shamrock.util.byte_types import hexstr_to_bytes
+from shamrock.util.condition_tools import conditions_dict_for_solution, pkm_pairs_for_conditions_dict
+from shamrock.util.ints import uint8, uint32, uint64, uint128
+from shamrock.util.json_util import dict_to_json_str
+from shamrock.wallet.block_record import HeaderBlockRecord
+from shamrock.wallet.cc_wallet.cc_info import CCInfo
+from shamrock.wallet.cc_wallet.cc_utils import (
     CC_MOD,
     SpendableCC,
     cc_puzzle_for_inner_puzzle,
@@ -33,22 +33,22 @@ from replaceme.wallet.cc_wallet.cc_utils import (
     spend_bundle_for_spendable_ccs,
     uncurry_cc,
 )
-from replaceme.wallet.derivation_record import DerivationRecord
-from replaceme.wallet.puzzles.genesis_by_coin_id_with_0 import (
+from shamrock.wallet.derivation_record import DerivationRecord
+from shamrock.wallet.puzzles.genesis_by_coin_id_with_0 import (
     create_genesis_or_zero_coin_checker,
     genesis_coin_id_for_genesis_coin_checker,
     lineage_proof_for_genesis,
 )
-from replaceme.wallet.puzzles.p2_delegated_puzzle_or_hidden_puzzle import (
+from shamrock.wallet.puzzles.p2_delegated_puzzle_or_hidden_puzzle import (
     DEFAULT_HIDDEN_PUZZLE_HASH,
     calculate_synthetic_secret_key,
 )
-from replaceme.wallet.transaction_record import TransactionRecord
-from replaceme.wallet.util.transaction_type import TransactionType
-from replaceme.wallet.util.wallet_types import WalletType
-from replaceme.wallet.wallet import Wallet
-from replaceme.wallet.wallet_coin_record import WalletCoinRecord
-from replaceme.wallet.wallet_info import WalletInfo
+from shamrock.wallet.transaction_record import TransactionRecord
+from shamrock.wallet.util.transaction_type import TransactionType
+from shamrock.wallet.util.wallet_types import WalletType
+from shamrock.wallet.wallet import Wallet
+from shamrock.wallet.wallet_coin_record import WalletCoinRecord
+from shamrock.wallet.wallet_info import WalletInfo
 
 
 class CCWallet:

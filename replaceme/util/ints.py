@@ -1,6 +1,6 @@
 from typing import Any, BinaryIO
 
-from replaceme.util.struct_stream import StructStream
+from shamrock.util.struct_stream import StructStream
 
 
 class int8(StructStream):

@@ -1,15 +1,15 @@
 from typing import Any, Callable, Dict, List, Optional
 
-from replaceme.farmer.farmer import Farmer
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.util.byte_types import hexstr_to_bytes
-from replaceme.util.ws_message import WsRpcMessage, create_payload_dict
+from shamrock.farmer.farmer import Farmer
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.util.byte_types import hexstr_to_bytes
+from shamrock.util.ws_message import WsRpcMessage, create_payload_dict
 
 
 class FarmerRpcApi:
     def __init__(self, farmer: Farmer):
         self.service = farmer
-        self.service_name = "replaceme_farmer"
+        self.service_name = "shamrock_farmer"
 
     def get_routes(self) -> Dict[str, Callable]:
         return {

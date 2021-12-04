@@ -2,8 +2,8 @@ import math
 import time
 from dataclasses import dataclass
 
-from replaceme.util.ints import uint32, uint64
-from replaceme.util.streamable import Streamable, streamable
+from shamrock.util.ints import uint32, uint64
+from shamrock.util.streamable import Streamable, streamable
 
 
 @dataclass(frozen=True)

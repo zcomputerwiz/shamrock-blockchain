@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 from typing import List
 
-from replaceme.types.condition_opcodes import ConditionOpcode
-from replaceme.util.streamable import Streamable, streamable
+from shamrock.types.condition_opcodes import ConditionOpcode
+from shamrock.util.streamable import Streamable, streamable
 
 
 @dataclass(frozen=True)

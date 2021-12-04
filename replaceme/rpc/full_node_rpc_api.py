@@ -1,27 +1,27 @@
 from typing import Any, Callable, Dict, List, Optional
 
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.consensus.pos_quality import UI_ACTUAL_SPACE_CONSTANT_FACTOR
-from replaceme.full_node.full_node import FullNode
-from replaceme.full_node.mempool_check_conditions import get_puzzle_and_solution_for_coin
-from replaceme.types.blockchain_format.program import Program, SerializedProgram
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.coin_record import CoinRecord
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.full_block import FullBlock
-from replaceme.types.generator_types import BlockGenerator
-from replaceme.types.mempool_inclusion_status import MempoolInclusionStatus
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.types.unfinished_header_block import UnfinishedHeaderBlock
-from replaceme.util.byte_types import hexstr_to_bytes
-from replaceme.util.ints import uint32, uint64, uint128
-from replaceme.util.ws_message import WsRpcMessage, create_payload_dict
+from shamrock.consensus.block_record import BlockRecord
+from shamrock.consensus.pos_quality import UI_ACTUAL_SPACE_CONSTANT_FACTOR
+from shamrock.full_node.full_node import FullNode
+from shamrock.full_node.mempool_check_conditions import get_puzzle_and_solution_for_coin
+from shamrock.types.blockchain_format.program import Program, SerializedProgram
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.coin_record import CoinRecord
+from shamrock.types.coin_spend import CoinSpend
+from shamrock.types.full_block import FullBlock
+from shamrock.types.generator_types import BlockGenerator
+from shamrock.types.mempool_inclusion_status import MempoolInclusionStatus
+from shamrock.types.spend_bundle import SpendBundle
+from shamrock.types.unfinished_header_block import UnfinishedHeaderBlock
+from shamrock.util.byte_types import hexstr_to_bytes
+from shamrock.util.ints import uint32, uint64, uint128
+from shamrock.util.ws_message import WsRpcMessage, create_payload_dict
 
 
 class FullNodeRpcApi:
     def __init__(self, service: FullNode):
         self.service = service
-        self.service_name = "replaceme_full_node"
+        self.service_name = "shamrock_full_node"
         self.cached_blockchain_state: Optional[Dict] = None
 
     def get_routes(self) -> Dict[str, Callable]:

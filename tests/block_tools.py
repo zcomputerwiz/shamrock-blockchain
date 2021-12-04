@@ -16,75 +16,75 @@ from typing import Callable, Dict, List, Optional, Tuple, Any
 from blspy import AugSchemeMPL, G1Element, G2Element, PrivateKey
 from chiabip158 import PyBIP158
 
-from replaceme.cmds.init_funcs import create_all_ssl, create_default_replaceme_config
-from replaceme.daemon.keychain_proxy import connect_to_keychain_and_validate, wrap_local_keychain
-from replaceme.full_node.bundle_tools import (
+from shamrock.cmds.init_funcs import create_all_ssl, create_default_shamrock_config
+from shamrock.daemon.keychain_proxy import connect_to_keychain_and_validate, wrap_local_keychain
+from shamrock.full_node.bundle_tools import (
     best_solution_generator_from_template,
     detect_potential_template_generator,
     simple_solution_generator,
 )
-from replaceme.util.errors import Err
-from replaceme.full_node.generator import setup_generator_args
-from replaceme.full_node.mempool_check_conditions import GENERATOR_MOD
-from replaceme.plotting.create_plots import create_plots, PlotKeys
-from replaceme.consensus.block_creation import unfinished_block_to_full_block
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
-from replaceme.consensus.blockchain_interface import BlockchainInterface
-from replaceme.consensus.coinbase import create_puzzlehash_for_pk, create_farmer_coin, create_pool_coin
-from replaceme.consensus.condition_costs import ConditionCost
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.consensus.default_constants import DEFAULT_CONSTANTS
-from replaceme.consensus.deficit import calculate_deficit
-from replaceme.consensus.full_block_to_block_record import block_to_block_record
-from replaceme.consensus.make_sub_epoch_summary import next_sub_epoch_summary
-from replaceme.consensus.pot_iterations import (
+from shamrock.util.errors import Err
+from shamrock.full_node.generator import setup_generator_args
+from shamrock.full_node.mempool_check_conditions import GENERATOR_MOD
+from shamrock.plotting.create_plots import create_plots, PlotKeys
+from shamrock.consensus.block_creation import unfinished_block_to_full_block
+from shamrock.consensus.block_record import BlockRecord
+from shamrock.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
+from shamrock.consensus.blockchain_interface import BlockchainInterface
+from shamrock.consensus.coinbase import create_puzzlehash_for_pk, create_farmer_coin, create_pool_coin
+from shamrock.consensus.condition_costs import ConditionCost
+from shamrock.consensus.constants import ConsensusConstants
+from shamrock.consensus.default_constants import DEFAULT_CONSTANTS
+from shamrock.consensus.deficit import calculate_deficit
+from shamrock.consensus.full_block_to_block_record import block_to_block_record
+from shamrock.consensus.make_sub_epoch_summary import next_sub_epoch_summary
+from shamrock.consensus.pot_iterations import (
     calculate_ip_iters,
     calculate_iterations_quality,
     calculate_sp_interval_iters,
     calculate_sp_iters,
     is_overflow_block,
 )
-from replaceme.consensus.vdf_info_computation import get_signage_point_vdf_info
-from replaceme.full_node.signage_point import SignagePoint
-from replaceme.plotting.util import PlotsRefreshParameter, PlotRefreshResult, PlotRefreshEvents, parse_plot_info
-from replaceme.plotting.manager import PlotManager
-from replaceme.server.server import ssl_context_for_server
-from replaceme.types.blockchain_format.classgroup import ClassgroupElement
-from replaceme.types.blockchain_format.coin import Coin, hash_coin_list
-from replaceme.types.blockchain_format.foliage import Foliage, FoliageBlockData, FoliageTransactionBlock, TransactionsInfo
-from replaceme.types.blockchain_format.pool_target import PoolTarget
-from replaceme.types.blockchain_format.program import INFINITE_COST
-from replaceme.types.blockchain_format.proof_of_space import ProofOfSpace
-from replaceme.types.blockchain_format.reward_chain_block import RewardChainBlockUnfinished
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.slots import (
+from shamrock.consensus.vdf_info_computation import get_signage_point_vdf_info
+from shamrock.full_node.signage_point import SignagePoint
+from shamrock.plotting.util import PlotsRefreshParameter, PlotRefreshResult, PlotRefreshEvents, parse_plot_info
+from shamrock.plotting.manager import PlotManager
+from shamrock.server.server import ssl_context_for_server
+from shamrock.types.blockchain_format.classgroup import ClassgroupElement
+from shamrock.types.blockchain_format.coin import Coin, hash_coin_list
+from shamrock.types.blockchain_format.foliage import Foliage, FoliageBlockData, FoliageTransactionBlock, TransactionsInfo
+from shamrock.types.blockchain_format.pool_target import PoolTarget
+from shamrock.types.blockchain_format.program import INFINITE_COST
+from shamrock.types.blockchain_format.proof_of_space import ProofOfSpace
+from shamrock.types.blockchain_format.reward_chain_block import RewardChainBlockUnfinished
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.blockchain_format.slots import (
     ChallengeChainSubSlot,
     InfusedChallengeChainSubSlot,
     RewardChainSubSlot,
     SubSlotProofs,
 )
-from replaceme.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from replaceme.types.blockchain_format.vdf import VDFInfo, VDFProof
-from replaceme.types.end_of_slot_bundle import EndOfSubSlotBundle
-from replaceme.types.full_block import FullBlock
-from replaceme.types.generator_types import BlockGenerator, CompressorArg
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.types.unfinished_block import UnfinishedBlock
-from replaceme.util.bech32m import encode_puzzle_hash
-from replaceme.util.block_cache import BlockCache
-from replaceme.util.condition_tools import ConditionOpcode
-from replaceme.util.config import load_config, save_config
-from replaceme.util.hash import std_hash
-from replaceme.util.ints import uint8, uint16, uint32, uint64, uint128
-from replaceme.util.keychain import Keychain, bytes_to_mnemonic
-from replaceme.util.merkle_set import MerkleSet
-from replaceme.util.prev_transaction_block import get_prev_transaction_block
-from replaceme.util.path import mkdir
-from replaceme.util.vdf_prover import get_vdf_info_and_proof
+from shamrock.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from shamrock.types.blockchain_format.vdf import VDFInfo, VDFProof
+from shamrock.types.end_of_slot_bundle import EndOfSubSlotBundle
+from shamrock.types.full_block import FullBlock
+from shamrock.types.generator_types import BlockGenerator, CompressorArg
+from shamrock.types.spend_bundle import SpendBundle
+from shamrock.types.unfinished_block import UnfinishedBlock
+from shamrock.util.bech32m import encode_puzzle_hash
+from shamrock.util.block_cache import BlockCache
+from shamrock.util.condition_tools import ConditionOpcode
+from shamrock.util.config import load_config, save_config
+from shamrock.util.hash import std_hash
+from shamrock.util.ints import uint8, uint16, uint32, uint64, uint128
+from shamrock.util.keychain import Keychain, bytes_to_mnemonic
+from shamrock.util.merkle_set import MerkleSet
+from shamrock.util.prev_transaction_block import get_prev_transaction_block
+from shamrock.util.path import mkdir
+from shamrock.util.vdf_prover import get_vdf_info_and_proof
 from tests.time_out_assert import time_out_assert
 from tests.wallet_tools import WalletTool
-from replaceme.wallet.derive_keys import (
+from shamrock.wallet.derive_keys import (
     master_sk_to_farmer_sk,
     master_sk_to_local_sk,
     master_sk_to_pool_sk,
@@ -141,7 +141,7 @@ class BlockTools:
         self.root_path = root_path
         self.local_keychain = keychain
 
-        create_default_replaceme_config(root_path)
+        create_default_shamrock_config(root_path)
         create_all_ssl(root_path)
 
         self.local_sk_cache: Dict[bytes32, Tuple[PrivateKey, Any]] = {}
@@ -193,7 +193,7 @@ class BlockTools:
             self.keychain_proxy = wrap_local_keychain(self.local_keychain, log=log)
         else:
             self.keychain_proxy = await connect_to_keychain_and_validate(
-                self.root_path, log, user="testing-1.8.0", service="replaceme-testing-1.8.0"
+                self.root_path, log, user="testing-1.8.0", service="shamrock-testing-1.8.0"
             )
 
         await self.keychain_proxy.delete_all_keys()
@@ -218,7 +218,7 @@ class BlockTools:
 
         self.farmer_pubkeys: List[G1Element] = [master_sk_to_farmer_sk(sk).get_g1() for sk in self.all_sks]
         if len(self.pool_pubkeys) == 0 or len(self.farmer_pubkeys) == 0:
-            raise RuntimeError("Keys not generated. Run `replaceme generate keys`")
+            raise RuntimeError("Keys not generated. Run `shamrock generate keys`")
 
         self.plot_manager.set_public_keys(self.farmer_pubkeys, self.pool_pubkeys)
 
@@ -269,7 +269,7 @@ class BlockTools:
             if pool_contract_puzzle_hash is None:
                 pool_pk = self.pool_pk
             else:
-                pool_address = encode_puzzle_hash(pool_contract_puzzle_hash, "xch")
+                pool_address = encode_puzzle_hash(pool_contract_puzzle_hash, "srn")
 
             keys = PlotKeys(self.farmer_pk, pool_pk, pool_address)
             # No datetime in the filename, to get deterministic filenames and not re-plot
@@ -1310,7 +1310,7 @@ def get_challenges(
 
 
 def get_plot_dir() -> Path:
-    cache_path = Path(os.path.expanduser(os.getenv("REPLACEME_ROOT", "~/.replaceme/"))) / "test-plots"
+    cache_path = Path(os.path.expanduser(os.getenv("SHAMROCK_ROOT", "~/.shamrock/"))) / "test-plots"
     mkdir(cache_path)
     return cache_path
 

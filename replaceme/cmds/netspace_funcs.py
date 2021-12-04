@@ -2,12 +2,12 @@ from typing import Optional
 
 import aiohttp
 
-from replaceme.rpc.full_node_rpc_client import FullNodeRpcClient
-from replaceme.util.byte_types import hexstr_to_bytes
-from replaceme.util.config import load_config
-from replaceme.util.default_root import DEFAULT_ROOT_PATH
-from replaceme.util.ints import uint16
-from replaceme.util.misc import format_bytes
+from shamrock.rpc.full_node_rpc_client import FullNodeRpcClient
+from shamrock.util.byte_types import hexstr_to_bytes
+from shamrock.util.config import load_config
+from shamrock.util.default_root import DEFAULT_ROOT_PATH
+from shamrock.util.ints import uint16
+from shamrock.util.misc import format_bytes
 
 
 async def netstorge_async(rpc_port: Optional[int], delta_block_height: str, start: str) -> None:

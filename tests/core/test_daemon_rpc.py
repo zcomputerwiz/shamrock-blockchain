@@ -1,9 +1,9 @@
 import pytest
 
 from tests.setup_nodes import setup_daemon
-from replaceme.daemon.client import connect_to_daemon
+from shamrock.daemon.client import connect_to_daemon
 from tests.setup_nodes import bt
-from replaceme import __version__
+from shamrock import __version__
 
 
 class TestDaemonRpc:

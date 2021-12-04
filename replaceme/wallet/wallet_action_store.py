@@ -2,10 +2,10 @@ from typing import List, Optional
 
 import aiosqlite
 
-from replaceme.util.db_wrapper import DBWrapper
-from replaceme.util.ints import uint32
-from replaceme.wallet.util.wallet_types import WalletType
-from replaceme.wallet.wallet_action import WalletAction
+from shamrock.util.db_wrapper import DBWrapper
+from shamrock.util.ints import uint32
+from shamrock.wallet.util.wallet_types import WalletType
+from shamrock.wallet.wallet_action import WalletAction
 
 
 class WalletActionStore:

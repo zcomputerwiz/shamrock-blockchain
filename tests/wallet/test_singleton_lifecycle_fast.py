@@ -4,15 +4,15 @@ from typing import Any, Callable, Dict, List, Optional, Tuple
 from blspy import G1Element, G2Element
 from clvm_tools import binutils
 
-from replaceme.types.blockchain_format.program import Program, SerializedProgram
-from replaceme.types.announcement import Announcement
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.util.condition_tools import ConditionOpcode
-from replaceme.util.ints import uint64
-from replaceme.wallet.puzzles.load_clvm import load_clvm
+from shamrock.types.blockchain_format.program import Program, SerializedProgram
+from shamrock.types.announcement import Announcement
+from shamrock.types.blockchain_format.coin import Coin
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.coin_spend import CoinSpend
+from shamrock.types.spend_bundle import SpendBundle
+from shamrock.util.condition_tools import ConditionOpcode
+from shamrock.util.ints import uint64
+from shamrock.wallet.puzzles.load_clvm import load_clvm
 
 from tests.clvm.coin_store import BadSpendBundleError, CoinStore, CoinTimestamp
 

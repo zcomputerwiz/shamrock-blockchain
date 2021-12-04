@@ -2,16 +2,16 @@ from collections import defaultdict
 from dataclasses import dataclass, replace
 from typing import Dict, Iterator, Optional
 
-from replaceme.util.condition_tools import created_outputs_for_conditions_dict
-from replaceme.full_node.mempool_check_conditions import mempool_check_conditions_dict, get_name_puzzle_conditions
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.coin_record import CoinRecord
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.util.ints import uint32, uint64
-from replaceme.full_node.bundle_tools import simple_solution_generator
-from replaceme.util.errors import Err
-from replaceme.consensus.cost_calculator import NPCResult
+from shamrock.util.condition_tools import created_outputs_for_conditions_dict
+from shamrock.full_node.mempool_check_conditions import mempool_check_conditions_dict, get_name_puzzle_conditions
+from shamrock.types.blockchain_format.coin import Coin
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.coin_record import CoinRecord
+from shamrock.types.spend_bundle import SpendBundle
+from shamrock.util.ints import uint32, uint64
+from shamrock.full_node.bundle_tools import simple_solution_generator
+from shamrock.util.errors import Err
+from shamrock.consensus.cost_calculator import NPCResult
 
 
 MAX_COST = 11000000000

@@ -6,14 +6,14 @@ import io
 from clvm_tools import binutils
 from pytest import raises
 
-from replaceme.protocols.wallet_protocol import RespondRemovals
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.program import Program
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.full_block import FullBlock
-from replaceme.types.weight_proof import SubEpochChallengeSegment
-from replaceme.util.ints import uint8, uint32
-from replaceme.util.streamable import (
+from shamrock.protocols.wallet_protocol import RespondRemovals
+from shamrock.types.blockchain_format.coin import Coin
+from shamrock.types.blockchain_format.program import Program
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.full_block import FullBlock
+from shamrock.types.weight_proof import SubEpochChallengeSegment
+from shamrock.util.ints import uint8, uint32
+from shamrock.util.streamable import (
     Streamable,
     streamable,
     parse_bool,

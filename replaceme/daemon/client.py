@@ -7,10 +7,10 @@ from typing import Any, Dict, Optional
 
 import websockets
 
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.util.config import load_config
-from replaceme.util.json_util import dict_to_json_str
-from replaceme.util.ws_message import WsRpcMessage, create_payload_dict
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.util.config import load_config
+from shamrock.util.json_util import dict_to_json_str
+from shamrock.util.ws_message import WsRpcMessage, create_payload_dict
 
 
 class DaemonProxy:
@@ -140,7 +140,7 @@ async def connect_to_daemon_and_validate(root_path: Path, quiet: bool = False) -
     Connect to the local daemon and do a ping to ensure that something is really
     there and running.
     """
-    from replaceme.server.server import ssl_context_for_client
+    from shamrock.server.server import ssl_context_for_client
 
     try:
         net_config = load_config(root_path, "config.yaml")
@@ -169,7 +169,7 @@ async def acquire_connection_to_daemon(root_path: Path, quiet: bool = False):
     block exits scope, execution resumes in this function, wherein the connection is
     closed.
     """
-    from replaceme.daemon.client import connect_to_daemon_and_validate
+    from shamrock.daemon.client import connect_to_daemon_and_validate
 
     daemon: Optional[DaemonProxy] = None
     try:

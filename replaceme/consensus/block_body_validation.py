@@ -5,36 +5,36 @@ from typing import Dict, List, Optional, Set, Tuple, Union, Callable
 from chiabip158 import PyBIP158
 from clvm.casts import int_from_bytes
 
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
-from replaceme.consensus.block_root_validation import validate_block_merkle_roots
-from replaceme.full_node.mempool_check_conditions import mempool_check_conditions_dict
-from replaceme.consensus.blockchain_interface import BlockchainInterface
-from replaceme.consensus.coinbase import create_farmer_coin, create_pool_coin
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.consensus.cost_calculator import NPCResult, calculate_cost_of_program
-from replaceme.consensus.find_fork_point import find_fork_point_in_chain
-from replaceme.full_node.block_store import BlockStore
-from replaceme.full_node.coin_store import CoinStore
-from replaceme.full_node.mempool_check_conditions import get_name_puzzle_conditions
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.coin_record import CoinRecord
-from replaceme.types.condition_opcodes import ConditionOpcode
-from replaceme.types.condition_with_args import ConditionWithArgs
-from replaceme.types.full_block import FullBlock
-from replaceme.types.generator_types import BlockGenerator
-from replaceme.types.name_puzzle_condition import NPC
-from replaceme.types.unfinished_block import UnfinishedBlock
-from replaceme.util import cached_bls
-from replaceme.util.condition_tools import pkm_pairs
-from replaceme.util.errors import Err
-from replaceme.util.generator_tools import (
+from shamrock.consensus.block_record import BlockRecord
+from shamrock.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
+from shamrock.consensus.block_root_validation import validate_block_merkle_roots
+from shamrock.full_node.mempool_check_conditions import mempool_check_conditions_dict
+from shamrock.consensus.blockchain_interface import BlockchainInterface
+from shamrock.consensus.coinbase import create_farmer_coin, create_pool_coin
+from shamrock.consensus.constants import ConsensusConstants
+from shamrock.consensus.cost_calculator import NPCResult, calculate_cost_of_program
+from shamrock.consensus.find_fork_point import find_fork_point_in_chain
+from shamrock.full_node.block_store import BlockStore
+from shamrock.full_node.coin_store import CoinStore
+from shamrock.full_node.mempool_check_conditions import get_name_puzzle_conditions
+from shamrock.types.blockchain_format.coin import Coin
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.coin_record import CoinRecord
+from shamrock.types.condition_opcodes import ConditionOpcode
+from shamrock.types.condition_with_args import ConditionWithArgs
+from shamrock.types.full_block import FullBlock
+from shamrock.types.generator_types import BlockGenerator
+from shamrock.types.name_puzzle_condition import NPC
+from shamrock.types.unfinished_block import UnfinishedBlock
+from shamrock.util import cached_bls
+from shamrock.util.condition_tools import pkm_pairs
+from shamrock.util.errors import Err
+from shamrock.util.generator_tools import (
     additions_for_npc,
     tx_removals_and_additions,
 )
-from replaceme.util.hash import std_hash
-from replaceme.util.ints import uint32, uint64, uint128
+from shamrock.util.hash import std_hash
+from shamrock.util.ints import uint32, uint64, uint128
 
 log = logging.getLogger(__name__)
 

@@ -2,17 +2,17 @@ import aiofiles
 import asyncio
 import logging
 
-from replaceme.server.address_manager import (
+from shamrock.server.address_manager import (
     BUCKET_SIZE,
     NEW_BUCKET_COUNT,
     NEW_BUCKETS_PER_ADDRESS,
     AddressManager,
     ExtendedPeerInfo,
 )
-from replaceme.util.files import write_file_async
-from replaceme.util.ints import uint64
-from replaceme.util.path import mkdir
-from replaceme.util.streamable import streamable, Streamable
+from shamrock.util.files import write_file_async
+from shamrock.util.ints import uint64
+from shamrock.util.path import mkdir
+from shamrock.util.streamable import streamable, Streamable
 from dataclasses import dataclass
 from pathlib import Path
 from timeit import default_timer as timer

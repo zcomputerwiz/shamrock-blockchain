@@ -2,12 +2,12 @@ from typing import Tuple
 
 import aiosqlite
 
-from replaceme.consensus.blockchain import Blockchain
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.full_node.block_store import BlockStore
-from replaceme.full_node.coin_store import CoinStore
-from replaceme.full_node.hint_store import HintStore
-from replaceme.util.db_wrapper import DBWrapper
+from shamrock.consensus.blockchain import Blockchain
+from shamrock.consensus.constants import ConsensusConstants
+from shamrock.full_node.block_store import BlockStore
+from shamrock.full_node.coin_store import CoinStore
+from shamrock.full_node.hint_store import HintStore
+from shamrock.util.db_wrapper import DBWrapper
 
 
 async def create_ram_blockchain(consensus_constants: ConsensusConstants) -> Tuple[aiosqlite.Connection, Blockchain]:

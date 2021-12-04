@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 from typing import List
-from replaceme.types.blockchain_format.program import SerializedProgram
-from replaceme.util.ints import uint32
-from replaceme.util.streamable import Streamable, streamable
+from shamrock.types.blockchain_format.program import SerializedProgram
+from shamrock.util.ints import uint32
+from shamrock.util.streamable import Streamable, streamable
 
 
 class GeneratorBlockCacheInterface:

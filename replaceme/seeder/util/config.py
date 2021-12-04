@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pkg_resources
 
-from replaceme.util.config import load_config, save_config
+from shamrock.util.config import load_config, save_config
 
 
 def patch_default_seeder_config(root_path: Path, filename="config.yaml") -> None:
@@ -13,13 +13,13 @@ def patch_default_seeder_config(root_path: Path, filename="config.yaml") -> None
     existing_config = load_config(root_path, "config.yaml")
 
     if "seeder" in existing_config:
-        print("Replaceme Seeder section exists in config. No action required.")
+        print("Shamrock Seeder section exists in config. No action required.")
         return
 
-    print("Replaceme Seeder section does not exist in config. Patching...")
+    print("Shamrock Seeder section does not exist in config. Patching...")
     config = load_config(root_path, "config.yaml")
     # The following ignores root_path when the second param is absolute, which this will be
-    seeder_config = load_config(root_path, pkg_resources.resource_filename("replaceme.util", "initial-config.yaml"))
+    seeder_config = load_config(root_path, pkg_resources.resource_filename("shamrock.util", "initial-config.yaml"))
 
     # Patch in the values with anchors, since pyyaml tends to change
     # the anchors to things like id001, etc

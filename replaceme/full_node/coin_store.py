@@ -1,12 +1,12 @@
 from typing import List, Optional, Set, Dict
 import aiosqlite
-from replaceme.protocols.wallet_protocol import CoinState
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.coin_record import CoinRecord
-from replaceme.util.db_wrapper import DBWrapper
-from replaceme.util.ints import uint32, uint64
-from replaceme.util.lru_cache import LRUCache
+from shamrock.protocols.wallet_protocol import CoinState
+from shamrock.types.blockchain_format.coin import Coin
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.coin_record import CoinRecord
+from shamrock.util.db_wrapper import DBWrapper
+from shamrock.util.ints import uint32, uint64
+from shamrock.util.lru_cache import LRUCache
 from time import time
 import logging
 

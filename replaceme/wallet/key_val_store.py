@@ -2,9 +2,9 @@ from typing import Any
 
 import aiosqlite
 
-from replaceme.util.byte_types import hexstr_to_bytes
-from replaceme.util.db_wrapper import DBWrapper
-from replaceme.util.streamable import Streamable
+from shamrock.util.byte_types import hexstr_to_bytes
+from shamrock.util.db_wrapper import DBWrapper
+from shamrock.util.streamable import Streamable
 
 
 class KeyValStore:

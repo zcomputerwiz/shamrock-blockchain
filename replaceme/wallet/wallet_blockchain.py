@@ -6,27 +6,27 @@ from concurrent.futures.process import ProcessPoolExecutor
 from enum import Enum
 from typing import Any, Callable, Dict, List, Optional, Set, Tuple
 
-from replaceme.consensus.block_header_validation import validate_finished_header_block, validate_unfinished_header_block
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.consensus.blockchain_interface import BlockchainInterface
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.consensus.difficulty_adjustment import get_next_sub_slot_iters_and_difficulty
-from replaceme.consensus.find_fork_point import find_fork_point_in_chain
-from replaceme.consensus.full_block_to_block_record import block_to_block_record
-from replaceme.consensus.multiprocess_validation import PreValidationResult, pre_validate_blocks_multiprocessing
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.header_block import HeaderBlock
-from replaceme.types.unfinished_header_block import UnfinishedHeaderBlock
-from replaceme.util.errors import Err, ValidationError
-from replaceme.util.ints import uint32, uint64
-from replaceme.util.streamable import recurse_jsonify
-from replaceme.wallet.block_record import HeaderBlockRecord
-from replaceme.wallet.wallet_block_store import WalletBlockStore
-from replaceme.wallet.wallet_coin_store import WalletCoinStore
-from replaceme.wallet.wallet_pool_store import WalletPoolStore
-from replaceme.wallet.wallet_transaction_store import WalletTransactionStore
+from shamrock.consensus.block_header_validation import validate_finished_header_block, validate_unfinished_header_block
+from shamrock.consensus.block_record import BlockRecord
+from shamrock.consensus.blockchain_interface import BlockchainInterface
+from shamrock.consensus.constants import ConsensusConstants
+from shamrock.consensus.difficulty_adjustment import get_next_sub_slot_iters_and_difficulty
+from shamrock.consensus.find_fork_point import find_fork_point_in_chain
+from shamrock.consensus.full_block_to_block_record import block_to_block_record
+from shamrock.consensus.multiprocess_validation import PreValidationResult, pre_validate_blocks_multiprocessing
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from shamrock.types.coin_spend import CoinSpend
+from shamrock.types.header_block import HeaderBlock
+from shamrock.types.unfinished_header_block import UnfinishedHeaderBlock
+from shamrock.util.errors import Err, ValidationError
+from shamrock.util.ints import uint32, uint64
+from shamrock.util.streamable import recurse_jsonify
+from shamrock.wallet.block_record import HeaderBlockRecord
+from shamrock.wallet.wallet_block_store import WalletBlockStore
+from shamrock.wallet.wallet_coin_store import WalletCoinStore
+from shamrock.wallet.wallet_pool_store import WalletPoolStore
+from shamrock.wallet.wallet_transaction_store import WalletTransactionStore
 
 log = logging.getLogger(__name__)
 

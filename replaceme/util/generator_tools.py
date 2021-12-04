@@ -1,12 +1,12 @@
 from typing import Any, Iterator, List, Tuple
 from chiabip158 import PyBIP158
 
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.full_block import FullBlock
-from replaceme.types.header_block import HeaderBlock
-from replaceme.types.name_puzzle_condition import NPC
-from replaceme.util.condition_tools import created_outputs_for_conditions_dict
+from shamrock.types.blockchain_format.coin import Coin
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.full_block import FullBlock
+from shamrock.types.header_block import HeaderBlock
+from shamrock.types.name_puzzle_condition import NPC
+from shamrock.util.condition_tools import created_outputs_for_conditions_dict
 
 
 def get_block_header(block: FullBlock, tx_addition_coins: List[Coin], removals_names: List[bytes32]) -> HeaderBlock:

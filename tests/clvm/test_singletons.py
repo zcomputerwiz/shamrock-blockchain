@@ -4,17 +4,17 @@ from typing import List, Tuple, Optional
 
 from blspy import AugSchemeMPL, G1Element, G2Element, PrivateKey
 
-from replaceme.types.blockchain_format.program import Program
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.util.errors import Err
-from replaceme.util.condition_tools import ConditionOpcode
-from replaceme.util.ints import uint64
-from replaceme.consensus.default_constants import DEFAULT_CONSTANTS
-from replaceme.wallet.lineage_proof import LineageProof
-from replaceme.wallet.puzzles import (
+from shamrock.types.blockchain_format.program import Program
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.blockchain_format.coin import Coin
+from shamrock.types.coin_spend import CoinSpend
+from shamrock.types.spend_bundle import SpendBundle
+from shamrock.util.errors import Err
+from shamrock.util.condition_tools import ConditionOpcode
+from shamrock.util.ints import uint64
+from shamrock.consensus.default_constants import DEFAULT_CONSTANTS
+from shamrock.wallet.lineage_proof import LineageProof
+from shamrock.wallet.puzzles import (
     p2_conditions,
     p2_delegated_puzzle_or_hidden_puzzle,
     singleton_top_layer,
@@ -25,14 +25,14 @@ from tests.clvm.test_puzzles import (
     secret_exponent_for_index,
 )
 
-from replaceme.clvm.spend_sim import SpendSim, SimClient
+from shamrock.clvm.spend_sim import SpendSim, SimClient
 
 """
 This test suite aims to test:
-    - replaceme.wallet.puzzles.singleton_top_layer.py
-    - replaceme.wallet.puzzles.singleton_top_layer.clvm
-    - replaceme.wallet.puzzles.p2_singleton.clvm
-    - replaceme.wallet.puzzles.p2_singleton_or_delayed_puzhash.clvm
+    - shamrock.wallet.puzzles.singleton_top_layer.py
+    - shamrock.wallet.puzzles.singleton_top_layer.clvm
+    - shamrock.wallet.puzzles.p2_singleton.clvm
+    - shamrock.wallet.puzzles.p2_singleton_or_delayed_puzhash.clvm
 """
 
 

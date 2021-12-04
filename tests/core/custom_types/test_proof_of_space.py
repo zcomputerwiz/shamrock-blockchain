@@ -1,7 +1,7 @@
 from secrets import token_bytes
 
-from replaceme.consensus.default_constants import DEFAULT_CONSTANTS
-from replaceme.types.blockchain_format.proof_of_space import ProofOfSpace  # pylint: disable=E0401
+from shamrock.consensus.default_constants import DEFAULT_CONSTANTS
+from shamrock.types.blockchain_format.proof_of_space import ProofOfSpace  # pylint: disable=E0401
 
 
 class TestProofOfSpace:

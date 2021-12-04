@@ -1,9 +1,9 @@
 import socket
 from ipaddress import ip_address, IPv4Network, IPv6Network
 from typing import Iterable, List, Tuple, Union, Any, Optional
-from replaceme.server.outbound_message import NodeType
-from replaceme.types.peer_info import PeerInfo
-from replaceme.util.ints import uint16
+from shamrock.server.outbound_message import NodeType
+from shamrock.types.peer_info import PeerInfo
+from shamrock.util.ints import uint16
 
 
 def is_in_network(peer_host: str, networks: Iterable[Union[IPv4Network, IPv6Network]]) -> bool:
@@ -20,27 +20,27 @@ def is_localhost(peer_host: str) -> bool:
 
 def class_for_type(type: NodeType) -> Any:
     if type is NodeType.FULL_NODE:
-        from replaceme.full_node.full_node_api import FullNodeAPI
+        from shamrock.full_node.full_node_api import FullNodeAPI
 
         return FullNodeAPI
     elif type is NodeType.WALLET:
-        from replaceme.wallet.wallet_node_api import WalletNodeAPI
+        from shamrock.wallet.wallet_node_api import WalletNodeAPI
 
         return WalletNodeAPI
     elif type is NodeType.INTRODUCER:
-        from replaceme.introducer.introducer_api import IntroducerAPI
+        from shamrock.introducer.introducer_api import IntroducerAPI
 
         return IntroducerAPI
     elif type is NodeType.TIMELORD:
-        from replaceme.timelord.timelord_api import TimelordAPI
+        from shamrock.timelord.timelord_api import TimelordAPI
 
         return TimelordAPI
     elif type is NodeType.FARMER:
-        from replaceme.farmer.farmer_api import FarmerAPI
+        from shamrock.farmer.farmer_api import FarmerAPI
 
         return FarmerAPI
     elif type is NodeType.HARVESTER:
-        from replaceme.harvester.harvester_api import HarvesterAPI
+        from shamrock.harvester.harvester_api import HarvesterAPI
 
         return HarvesterAPI
     raise ValueError("No class for type")

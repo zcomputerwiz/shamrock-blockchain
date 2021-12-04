@@ -7,11 +7,11 @@ from typing import Dict, List, Optional
 
 import pkg_resources
 
-from replaceme.util.replaceme_logging import initialize_logging
-from replaceme.util.config import load_config
-from replaceme.util.default_root import DEFAULT_ROOT_PATH
-from replaceme.util.network import get_host_addr
-from replaceme.util.setproctitle import setproctitle
+from shamrock.util.shamrock_logging import initialize_logging
+from shamrock.util.config import load_config
+from shamrock.util.default_root import DEFAULT_ROOT_PATH
+from shamrock.util.network import get_host_addr
+from shamrock.util.setproctitle import setproctitle
 
 active_processes: List = []
 stopped = False
@@ -88,7 +88,7 @@ async def spawn_all_processes(config: Dict, net_config: Dict):
 
 def main():
     root_path = DEFAULT_ROOT_PATH
-    setproctitle("replaceme_timelord_launcher")
+    setproctitle("shamrock_timelord_launcher")
     net_config = load_config(root_path, "config.yaml")
     config = net_config["timelord_launcher"]
     initialize_logging("TLauncher", config["logging"], root_path)

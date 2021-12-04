@@ -1,13 +1,13 @@
 import logging
 from typing import Dict, List, Optional
 
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.consensus.blockchain_interface import BlockchainInterface
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from replaceme.types.header_block import HeaderBlock
-from replaceme.types.weight_proof import SubEpochChallengeSegment, SubEpochSegments
-from replaceme.util.ints import uint32
+from shamrock.consensus.block_record import BlockRecord
+from shamrock.consensus.blockchain_interface import BlockchainInterface
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from shamrock.types.header_block import HeaderBlock
+from shamrock.types.weight_proof import SubEpochChallengeSegment, SubEpochSegments
+from shamrock.util.ints import uint32
 
 
 class BlockCache(BlockchainInterface):

@@ -1,14 +1,14 @@
 from dataclasses import dataclass
 from typing import List, Optional, Tuple
 
-from replaceme.types.blockchain_format.foliage import Foliage
-from replaceme.types.blockchain_format.reward_chain_block import RewardChainBlock, RewardChainBlockUnfinished
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from replaceme.types.blockchain_format.vdf import VDFInfo, VDFProof
-from replaceme.types.end_of_slot_bundle import EndOfSubSlotBundle
-from replaceme.util.ints import uint8, uint32, uint64, uint128
-from replaceme.util.streamable import Streamable, streamable
+from shamrock.types.blockchain_format.foliage import Foliage
+from shamrock.types.blockchain_format.reward_chain_block import RewardChainBlock, RewardChainBlockUnfinished
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from shamrock.types.blockchain_format.vdf import VDFInfo, VDFProof
+from shamrock.types.end_of_slot_bundle import EndOfSubSlotBundle
+from shamrock.util.ints import uint8, uint32, uint64, uint128
+from shamrock.util.streamable import Streamable, streamable
 
 """
 Protocol between timelord and full node.

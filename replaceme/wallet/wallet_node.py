@@ -7,11 +7,11 @@ from pathlib import Path
 from typing import Callable, Dict, List, Optional, Set, Tuple, Union
 
 from blspy import PrivateKey
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.consensus.blockchain_interface import BlockchainInterface
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.consensus.multiprocess_validation import PreValidationResult
-from replaceme.daemon.keychain_proxy import (
+from shamrock.consensus.block_record import BlockRecord
+from shamrock.consensus.blockchain_interface import BlockchainInterface
+from shamrock.consensus.constants import ConsensusConstants
+from shamrock.consensus.multiprocess_validation import PreValidationResult
+from shamrock.daemon.keychain_proxy import (
     KeychainProxy,
     KeychainProxyConnectionFailure,
     KeyringIsEmpty,
@@ -19,11 +19,11 @@ from replaceme.daemon.keychain_proxy import (
     connect_to_keychain_and_validate,
     wrap_local_keychain,
 )
-from replaceme.pools.pool_puzzles import SINGLETON_LAUNCHER_HASH
-from replaceme.protocols import wallet_protocol
-from replaceme.protocols.full_node_protocol import RequestProofOfWeight, RespondProofOfWeight
-from replaceme.protocols.protocol_message_types import ProtocolMessageTypes
-from replaceme.protocols.wallet_protocol import (
+from shamrock.pools.pool_puzzles import SINGLETON_LAUNCHER_HASH
+from shamrock.protocols import wallet_protocol
+from shamrock.protocols.full_node_protocol import RequestProofOfWeight, RespondProofOfWeight
+from shamrock.protocols.protocol_message_types import ProtocolMessageTypes
+from shamrock.protocols.wallet_protocol import (
     RejectAdditionsRequest,
     RejectRemovalsRequest,
     RequestAdditions,
@@ -33,37 +33,37 @@ from replaceme.protocols.wallet_protocol import (
     RespondHeaderBlocks,
     RespondRemovals,
 )
-from replaceme.server.node_discovery import WalletPeers
-from replaceme.server.outbound_message import Message, NodeType, make_msg
-from replaceme.server.peer_store_resolver import PeerStoreResolver
-from replaceme.server.server import ReplacemeServer
-from replaceme.server.ws_connection import WSReplacemeConnection
-from replaceme.types.blockchain_format.coin import Coin, hash_coin_list
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.header_block import HeaderBlock
-from replaceme.types.mempool_inclusion_status import MempoolInclusionStatus
-from replaceme.types.peer_info import PeerInfo
-from replaceme.util.byte_types import hexstr_to_bytes
-from replaceme.util.check_fork_next_block import check_fork_next_block
-from replaceme.util.config import WALLET_PEERS_PATH_KEY_DEPRECATED, load_config
-from replaceme.util.errors import Err, ValidationError
-from replaceme.util.ints import uint32, uint128
-from replaceme.util.keychain import Keychain
-from replaceme.util.lru_cache import LRUCache
-from replaceme.util.merkle_set import MerkleSet, confirm_included_already_hashed, confirm_not_included_already_hashed
-from replaceme.util.network import get_host_addr
-from replaceme.util.path import mkdir, path_from_root
-from replaceme.wallet.block_record import HeaderBlockRecord
-from replaceme.wallet.derivation_record import DerivationRecord
-from replaceme.wallet.settings.settings_objects import BackupInitialized
-from replaceme.wallet.transaction_record import TransactionRecord
-from replaceme.wallet.util.backup_utils import open_backup_file
-from replaceme.wallet.util.wallet_types import WalletType
-from replaceme.wallet.wallet_action import WalletAction
-from replaceme.wallet.wallet_blockchain import ReceiveBlockResult
-from replaceme.wallet.wallet_state_manager import WalletStateManager
-from replaceme.util.profiler import profile_task
+from shamrock.server.node_discovery import WalletPeers
+from shamrock.server.outbound_message import Message, NodeType, make_msg
+from shamrock.server.peer_store_resolver import PeerStoreResolver
+from shamrock.server.server import ShamrockServer
+from shamrock.server.ws_connection import WSShamrockConnection
+from shamrock.types.blockchain_format.coin import Coin, hash_coin_list
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.coin_spend import CoinSpend
+from shamrock.types.header_block import HeaderBlock
+from shamrock.types.mempool_inclusion_status import MempoolInclusionStatus
+from shamrock.types.peer_info import PeerInfo
+from shamrock.util.byte_types import hexstr_to_bytes
+from shamrock.util.check_fork_next_block import check_fork_next_block
+from shamrock.util.config import WALLET_PEERS_PATH_KEY_DEPRECATED, load_config
+from shamrock.util.errors import Err, ValidationError
+from shamrock.util.ints import uint32, uint128
+from shamrock.util.keychain import Keychain
+from shamrock.util.lru_cache import LRUCache
+from shamrock.util.merkle_set import MerkleSet, confirm_included_already_hashed, confirm_not_included_already_hashed
+from shamrock.util.network import get_host_addr
+from shamrock.util.path import mkdir, path_from_root
+from shamrock.wallet.block_record import HeaderBlockRecord
+from shamrock.wallet.derivation_record import DerivationRecord
+from shamrock.wallet.settings.settings_objects import BackupInitialized
+from shamrock.wallet.transaction_record import TransactionRecord
+from shamrock.wallet.util.backup_utils import open_backup_file
+from shamrock.wallet.util.wallet_types import WalletType
+from shamrock.wallet.wallet_action import WalletAction
+from shamrock.wallet.wallet_blockchain import ReceiveBlockResult
+from shamrock.wallet.wallet_state_manager import WalletStateManager
+from shamrock.util.profiler import profile_task
 
 
 class WalletNode:
@@ -72,7 +72,7 @@ class WalletNode:
     constants: ConsensusConstants
     keychain_proxy: Optional[KeychainProxy]
     local_keychain: Optional[Keychain]  # For testing only. KeychainProxy is used in normal cases
-    server: Optional[ReplacemeServer]
+    server: Optional[ShamrockServer]
     log: logging.Logger
     wallet_peers: WalletPeers
     # Maintains the state of the wallet (blockchain and transactions), handles DB connections
@@ -145,7 +145,7 @@ class WalletNode:
             keychain_proxy = await self.ensure_keychain_proxy()
             key = await keychain_proxy.get_key_for_fingerprint(fingerprint)
         except KeyringIsEmpty:
-            self.log.warning("No keys present. Create keys with the UI, or with the 'replaceme keys' program.")
+            self.log.warning("No keys present. Create keys with the UI, or with the 'shamrock keys' program.")
             return None
         except KeyringIsLocked:
             self.log.warning("Keyring is locked")
@@ -352,7 +352,7 @@ class WalletNode:
 
         return messages
 
-    def set_server(self, server: ReplacemeServer):
+    def set_server(self, server: ShamrockServer):
         self.server = server
         DNS_SERVERS_EMPTY: list = []
         network_name: str = self.config["selected_network"]
@@ -376,7 +376,7 @@ class WalletNode:
             self.log,
         )
 
-    async def on_connect(self, peer: WSReplacemeConnection):
+    async def on_connect(self, peer: WSShamrockConnection):
         if self.wallet_state_manager is None or self.backup_initialized is False:
             return None
         messages_peer_ids = await self._messages_to_resend()
@@ -428,7 +428,7 @@ class WalletNode:
                 return True
         return False
 
-    async def complete_blocks(self, header_blocks: List[HeaderBlock], peer: WSReplacemeConnection):
+    async def complete_blocks(self, header_blocks: List[HeaderBlock], peer: WSShamrockConnection):
         if self.wallet_state_manager is None:
             return None
         header_block_records: List[HeaderBlockRecord] = []
@@ -478,7 +478,7 @@ class WalletNode:
                 else:
                     self.log.debug(f"Result: {result}")
 
-    async def new_peak_wallet(self, peak: wallet_protocol.NewPeakWallet, peer: WSReplacemeConnection):
+    async def new_peak_wallet(self, peak: wallet_protocol.NewPeakWallet, peer: WSShamrockConnection):
         if self.wallet_state_manager is None:
             return
 
@@ -666,7 +666,7 @@ class WalletNode:
             self.log.info("Not performing sync, already caught up.")
             return None
 
-        peers: List[WSReplacemeConnection] = self.server.get_full_node_connections()
+        peers: List[WSShamrockConnection] = self.server.get_full_node_connections()
         if len(peers) == 0:
             self.log.info("No peers to sync to")
             return None
@@ -689,7 +689,7 @@ class WalletNode:
 
     async def fetch_blocks_and_validate(
         self,
-        peer: WSReplacemeConnection,
+        peer: WSShamrockConnection,
         height_start: uint32,
         height_end: uint32,
         fork_point_with_peak: Optional[uint32],
@@ -946,7 +946,7 @@ class WalletNode:
         return additional_coin_spends
 
     async def get_additions(
-        self, peer: WSReplacemeConnection, block_i, additions: Optional[List[bytes32]], get_all_additions: bool = False
+        self, peer: WSShamrockConnection, block_i, additions: Optional[List[bytes32]], get_all_additions: bool = False
     ) -> Optional[List[Coin]]:
         if (additions is not None and len(additions) > 0) or get_all_additions:
             if get_all_additions:
@@ -980,7 +980,7 @@ class WalletNode:
             return []  # No added coins
 
     async def get_removals(
-        self, peer: WSReplacemeConnection, block_i, additions, removals, request_all_removals=False
+        self, peer: WSShamrockConnection, block_i, additions, removals, request_all_removals=False
     ) -> Optional[List[Coin]]:
         assert self.wallet_state_manager is not None
         # Check if we need all removals
@@ -1031,7 +1031,7 @@ class WalletNode:
 
 
 async def wallet_next_block_check(
-    peer: WSReplacemeConnection, potential_peek: uint32, blockchain: BlockchainInterface
+    peer: WSShamrockConnection, potential_peek: uint32, blockchain: BlockchainInterface
 ) -> bool:
     block_response = await peer.request_header_blocks(
         wallet_protocol.RequestHeaderBlocks(potential_peek, potential_peek)

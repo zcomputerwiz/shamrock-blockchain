@@ -3,11 +3,11 @@ from typing import Optional
 
 from blspy import G2Element
 
-from replaceme.types.blockchain_format.proof_of_space import ProofOfSpace
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.vdf import VDFInfo
-from replaceme.util.ints import uint8, uint32, uint128
-from replaceme.util.streamable import Streamable, streamable
+from shamrock.types.blockchain_format.proof_of_space import ProofOfSpace
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.blockchain_format.vdf import VDFInfo
+from shamrock.util.ints import uint8, uint32, uint128
+from shamrock.util.streamable import Streamable, streamable
 
 
 @dataclass(frozen=True)

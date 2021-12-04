@@ -1,11 +1,11 @@
 from dataclasses import dataclass
 from typing import List, Optional
 
-from replaceme.types.blockchain_format.foliage import Foliage, FoliageTransactionBlock
-from replaceme.types.blockchain_format.reward_chain_block import RewardChainBlockUnfinished
-from replaceme.types.blockchain_format.vdf import VDFProof
-from replaceme.types.end_of_slot_bundle import EndOfSubSlotBundle
-from replaceme.util.streamable import Streamable, streamable
+from shamrock.types.blockchain_format.foliage import Foliage, FoliageTransactionBlock
+from shamrock.types.blockchain_format.reward_chain_block import RewardChainBlockUnfinished
+from shamrock.types.blockchain_format.vdf import VDFProof
+from shamrock.types.end_of_slot_bundle import EndOfSubSlotBundle
+from shamrock.util.streamable import Streamable, streamable
 
 
 @dataclass(frozen=True)

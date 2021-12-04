@@ -1,15 +1,15 @@
 from clvm.casts import int_from_bytes
 from clvm_tools import binutils
 
-from replaceme.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
-from replaceme.types.blockchain_format.program import Program
-from replaceme.types.condition_opcodes import ConditionOpcode
-from replaceme.util.bech32m import decode_puzzle_hash, encode_puzzle_hash
-from replaceme.util.condition_tools import parse_sexp_to_conditions
-from replaceme.util.ints import uint32
+from shamrock.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
+from shamrock.types.blockchain_format.program import Program
+from shamrock.types.condition_opcodes import ConditionOpcode
+from shamrock.util.bech32m import decode_puzzle_hash, encode_puzzle_hash
+from shamrock.util.condition_tools import parse_sexp_to_conditions
+from shamrock.util.ints import uint32
 
-address1 = "txch15gx26ndmacfaqlq8m0yajeggzceu7cvmaz4df0hahkukes695rss6lej7h"  # Gene wallet (m/12381/8444/2/42):
-address2 = "txch1c2cguswhvmdyz9hr3q6hak2h6p9dw4rz82g4707k2xy2sarv705qcce4pn"  # Mariano address (m/12381/8444/2/0)
+address1 = "tsrn15gx26ndmacfaqlq8m0yajeggzceu7cvmaz4df0hahkukes695rss6lej7h"  # Gene wallet (m/12381/8444/2/42):
+address2 = "tsrn1c2cguswhvmdyz9hr3q6hak2h6p9dw4rz82g4707k2xy2sarv705qcce4pn"  # Mariano address (m/12381/8444/2/0)
 
 ph1 = decode_puzzle_hash(address1)
 ph2 = decode_puzzle_hash(address2)
@@ -30,32 +30,32 @@ def make_puzzle(amount: int) -> int:
     puzzle_hash = puzzle_prog.get_tree_hash()
 
     solution = "()"
-    prefix = "xch"
+    prefix = "srn"
     print("PH", puzzle_hash)
     print(f"Address: {encode_puzzle_hash(puzzle_hash, prefix)}")
 
     result = puzzle_prog.run(solution)
     error, result_human = parse_sexp_to_conditions(result)
 
-    total_replaceme = 0
+    total_shamrock = 0
     if error:
         print(f"Error: {error}")
     else:
         assert result_human is not None
         for cvp in result_human:
             assert len(cvp.vars) == 2
-            total_replaceme += int_from_bytes(cvp.vars[1])
+            total_shamrock += int_from_bytes(cvp.vars[1])
             print(
                 f"{ConditionOpcode(cvp.opcode).name}: {encode_puzzle_hash(cvp.vars[0], prefix)},"
                 f" amount: {int_from_bytes(cvp.vars[1])}"
             )
-    return total_replaceme
+    return total_shamrock
 
 
-total_replaceme = 0
+total_shamrock = 0
 print("Pool address: ")
-total_replaceme += make_puzzle(pool_amounts)
+total_shamrock += make_puzzle(pool_amounts)
 print("\nFarmer address: ")
-total_replaceme += make_puzzle(farmer_amounts)
+total_shamrock += make_puzzle(farmer_amounts)
 
-assert total_replaceme == calculate_base_farmer_reward(uint32(0)) + calculate_pool_reward(uint32(0))
+assert total_shamrock == calculate_base_farmer_reward(uint32(0)) + calculate_pool_reward(uint32(0))

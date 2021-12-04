@@ -9,10 +9,10 @@ from typing import Any, List
 import aiosqlite
 from dnslib import A, AAAA, SOA, NS, MX, CNAME, RR, DNSRecord, QTYPE, DNSHeader
 
-from replaceme.util.replaceme_logging import initialize_logging
-from replaceme.util.path import mkdir, path_from_root
-from replaceme.util.config import load_config
-from replaceme.util.default_root import DEFAULT_ROOT_PATH
+from shamrock.util.shamrock_logging import initialize_logging
+from shamrock.util.path import mkdir, path_from_root
+from shamrock.util.config import load_config
+from shamrock.util.default_root import DEFAULT_ROOT_PATH
 
 SERVICE_NAME = "seeder"
 log = logging.getLogger(__name__)

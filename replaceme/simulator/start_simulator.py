@@ -3,13 +3,13 @@ from pathlib import Path
 from multiprocessing import freeze_support
 from typing import Dict
 
-from replaceme.full_node.full_node import FullNode
-from replaceme.rpc.full_node_rpc_api import FullNodeRpcApi
-from replaceme.server.outbound_message import NodeType
-from replaceme.server.start_service import run_service
-from replaceme.util.config import load_config_cli
-from replaceme.util.default_root import DEFAULT_ROOT_PATH
-from replaceme.util.path import mkdir, path_from_root
+from shamrock.full_node.full_node import FullNode
+from shamrock.rpc.full_node_rpc_api import FullNodeRpcApi
+from shamrock.server.outbound_message import NodeType
+from shamrock.server.start_service import run_service
+from shamrock.util.config import load_config_cli
+from shamrock.util.default_root import DEFAULT_ROOT_PATH
+from shamrock.util.path import mkdir, path_from_root
 from tests.block_tools import BlockTools, create_block_tools, test_constants
 from tests.util.keyring import TempKeyring
 

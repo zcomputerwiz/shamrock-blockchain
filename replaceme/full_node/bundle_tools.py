@@ -4,13 +4,13 @@ from typing import Optional, Tuple, List, Union
 from clvm import SExp
 from clvm_tools import binutils
 
-from replaceme.full_node.generator import create_compressed_generator
-from replaceme.types.blockchain_format.program import SerializedProgram, Program
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.generator_types import BlockGenerator, CompressorArg
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.util.byte_types import hexstr_to_bytes
-from replaceme.util.ints import uint32, uint64
+from shamrock.full_node.generator import create_compressed_generator
+from shamrock.types.blockchain_format.program import SerializedProgram, Program
+from shamrock.types.coin_spend import CoinSpend
+from shamrock.types.generator_types import BlockGenerator, CompressorArg
+from shamrock.types.spend_bundle import SpendBundle
+from shamrock.util.byte_types import hexstr_to_bytes
+from shamrock.util.ints import uint32, uint64
 
 
 def spend_bundle_to_serialized_coin_spend_entry_list(bundle: SpendBundle) -> bytes:

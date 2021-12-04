@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.types.blockchain_format.sized_bytes import bytes100
-from replaceme.util.streamable import Streamable, streamable
+from shamrock.consensus.constants import ConsensusConstants
+from shamrock.types.blockchain_format.sized_bytes import bytes100
+from shamrock.util.streamable import Streamable, streamable
 
 
 @dataclass(frozen=True)

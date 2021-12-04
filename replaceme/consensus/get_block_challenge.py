@@ -1,15 +1,15 @@
 import logging
 from typing import List, Union
 
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.consensus.blockchain_interface import BlockchainInterface
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.full_block import FullBlock
-from replaceme.types.header_block import HeaderBlock
-from replaceme.types.unfinished_block import UnfinishedBlock
-from replaceme.types.unfinished_header_block import UnfinishedHeaderBlock
-from replaceme.util.ints import uint64
+from shamrock.consensus.block_record import BlockRecord
+from shamrock.consensus.blockchain_interface import BlockchainInterface
+from shamrock.consensus.constants import ConsensusConstants
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.full_block import FullBlock
+from shamrock.types.header_block import HeaderBlock
+from shamrock.types.unfinished_block import UnfinishedBlock
+from shamrock.types.unfinished_header_block import UnfinishedHeaderBlock
+from shamrock.util.ints import uint64
 
 log = logging.getLogger(__name__)
 

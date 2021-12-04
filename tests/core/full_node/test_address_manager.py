@@ -5,10 +5,10 @@ from pathlib import Path
 
 import pytest
 
-from replaceme.server.address_manager import AddressManager, ExtendedPeerInfo
-from replaceme.server.address_manager_store import AddressManagerStore
-from replaceme.types.peer_info import PeerInfo, TimestampedPeerInfo
-from replaceme.util.ints import uint16, uint64
+from shamrock.server.address_manager import AddressManager, ExtendedPeerInfo
+from shamrock.server.address_manager_store import AddressManagerStore
+from shamrock.types.peer_info import PeerInfo, TimestampedPeerInfo
+from shamrock.util.ints import uint16, uint64
 
 @pytest.fixture(scope="module")
 def event_loop():

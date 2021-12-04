@@ -1,9 +1,9 @@
 from dataclasses import dataclass
 from typing import List, Optional, Tuple
 
-from replaceme.types.blockchain_format.program import Program
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.util.streamable import Streamable, streamable
+from shamrock.types.blockchain_format.program import Program
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.util.streamable import Streamable, streamable
 
 
 @dataclass(frozen=True)

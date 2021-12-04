@@ -34,15 +34,15 @@ pip install pyinstaller==4.5
 pip install setuptools_scm
 
 Write-Output "   ---"
-Write-Output "Get REPLACEME_INSTALLER_VERSION"
-# The environment variable REPLACEME_INSTALLER_VERSION needs to be defined
-$env:REPLACEME_INSTALLER_VERSION = python .\build_scripts\installer-version.py -win
+Write-Output "Get SHAMROCK_INSTALLER_VERSION"
+# The environment variable SHAMROCK_INSTALLER_VERSION needs to be defined
+$env:SHAMROCK_INSTALLER_VERSION = python .\build_scripts\installer-version.py -win
 
-if (-not (Test-Path env:REPLACEME_INSTALLER_VERSION)) {
-  $env:REPLACEME_INSTALLER_VERSION = '0.0.0'
-  Write-Output "WARNING: No environment variable REPLACEME_INSTALLER_VERSION set. Using 0.0.0"
+if (-not (Test-Path env:SHAMROCK_INSTALLER_VERSION)) {
+  $env:SHAMROCK_INSTALLER_VERSION = '0.0.0'
+  Write-Output "WARNING: No environment variable SHAMROCK_INSTALLER_VERSION set. Using 0.0.0"
   }
-Write-Output "Replaceme Version is: $env:REPLACEME_INSTALLER_VERSION"
+Write-Output "Shamrock Version is: $env:SHAMROCK_INSTALLER_VERSION"
 Write-Output "   ---"
 
 Write-Output "Checking if madmax exists"
@@ -60,12 +60,12 @@ if (Test-Path -Path .\bladebit\) {
 }
 
 Write-Output "   ---"
-Write-Output "Build replaceme-blockchain wheels"
+Write-Output "Build shamrock-blockchain wheels"
 Write-Output "   ---"
 pip wheel --use-pep517 --extra-index-url https://pypi.chia.net/simple/ -f . --wheel-dir=.\build_scripts\win_build .
 
 Write-Output "   ---"
-Write-Output "Install replaceme-blockchain wheels into venv with pip"
+Write-Output "Install shamrock-blockchain wheels into venv with pip"
 Write-Output "   ---"
 
 Write-Output "pip install miniupnpc"
@@ -74,20 +74,20 @@ pip install --no-index --find-links=.\win_build\ miniupnpc
 # Write-Output "pip install setproctitle"
 # pip install setproctitle==1.2.2
 
-Write-Output "pip install replaceme-blockchain"
-pip install --no-index --find-links=.\win_build\ replaceme-blockchain
+Write-Output "pip install shamrock-blockchain"
+pip install --no-index --find-links=.\win_build\ shamrock-blockchain
 
 Write-Output "   ---"
-Write-Output "Use pyinstaller to create replaceme .exe's"
+Write-Output "Use pyinstaller to create shamrock .exe's"
 Write-Output "   ---"
-$SPEC_FILE = (python -c 'import replaceme; print(replaceme.PYINSTALLER_SPEC_PATH)') -join "`n"
+$SPEC_FILE = (python -c 'import shamrock; print(shamrock.PYINSTALLER_SPEC_PATH)') -join "`n"
 pyinstaller --log-level INFO $SPEC_FILE
 
 Write-Output "   ---"
-Write-Output "Copy replaceme executables to replaceme-blockchain-gui\"
+Write-Output "Copy shamrock executables to shamrock-blockchain-gui\"
 Write-Output "   ---"
-Copy-Item "dist\daemon" -Destination "..\replaceme-blockchain-gui\" -Recurse
-Set-Location -Path "..\replaceme-blockchain-gui" -PassThru
+Copy-Item "dist\daemon" -Destination "..\shamrock-blockchain-gui\" -Recurse
+Set-Location -Path "..\shamrock-blockchain-gui" -PassThru
 
 git status
 
@@ -111,13 +111,13 @@ If ($LastExitCode -gt 0){
 }
 
 Write-Output "   ---"
-Write-Output "Increase the stack for replaceme command for (replaceme plots create) chiapos limitations"
+Write-Output "Increase the stack for shamrock command for (shamrock plots create) chiapos limitations"
 # editbin.exe needs to be in the path
-editbin.exe /STACK:8000000 daemon\replaceme.exe
+editbin.exe /STACK:8000000 daemon\shamrock.exe
 Write-Output "   ---"
 
-$packageVersion = "$env:REPLACEME_INSTALLER_VERSION"
-$packageName = "Replaceme-$packageVersion"
+$packageVersion = "$env:SHAMROCK_INSTALLER_VERSION"
+$packageName = "Shamrock-$packageVersion"
 
 Write-Output "packageName is $packageName"
 
@@ -125,14 +125,14 @@ Write-Output "   ---"
 Write-Output "fix version in package.json"
 choco install jq
 cp package.json package.json.orig
-jq --arg VER "$env:REPLACEME_INSTALLER_VERSION" '.version=$VER' package.json > temp.json
+jq --arg VER "$env:SHAMROCK_INSTALLER_VERSION" '.version=$VER' package.json > temp.json
 rm package.json
 mv temp.json package.json
 Write-Output "   ---"
 
 Write-Output "   ---"
 Write-Output "electron-packager"
-electron-packager . Replaceme --asar.unpack="**\daemon\**" --overwrite --icon=.\src\assets\img\replaceme.ico --app-version=$packageVersion
+electron-packager . Shamrock --asar.unpack="**\daemon\**" --overwrite --icon=.\src\assets\img\shamrock.ico --app-version=$packageVersion
 Write-Output "   ---"
 
 Write-Output "   ---"
@@ -146,8 +146,8 @@ If ($env:HAS_SECRET) {
    Write-Output "   ---"
    Write-Output "Add timestamp and verify signature"
    Write-Output "   ---"
-   signtool.exe timestamp /v /t http://timestamp.comodoca.com/ .\release-builds\windows-installer\ReplacemeSetup-$packageVersion.exe
-   signtool.exe verify /v /pa .\release-builds\windows-installer\ReplacemeSetup-$packageVersion.exe
+   signtool.exe timestamp /v /t http://timestamp.comodoca.com/ .\release-builds\windows-installer\ShamrockSetup-$packageVersion.exe
+   signtool.exe verify /v /pa .\release-builds\windows-installer\ShamrockSetup-$packageVersion.exe
    }   Else    {
    Write-Output "Skipping timestamp and verify signatures - no authorization to install certificates"
 }

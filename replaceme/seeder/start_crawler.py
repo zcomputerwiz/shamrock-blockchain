@@ -3,14 +3,14 @@ import pathlib
 from multiprocessing import freeze_support
 from typing import Dict
 
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.consensus.default_constants import DEFAULT_CONSTANTS
-from replaceme.seeder.crawler import Crawler
-from replaceme.seeder.crawler_api import CrawlerAPI
-from replaceme.server.outbound_message import NodeType
-from replaceme.server.start_service import run_service
-from replaceme.util.config import load_config_cli
-from replaceme.util.default_root import DEFAULT_ROOT_PATH
+from shamrock.consensus.constants import ConsensusConstants
+from shamrock.consensus.default_constants import DEFAULT_CONSTANTS
+from shamrock.seeder.crawler import Crawler
+from shamrock.seeder.crawler_api import CrawlerAPI
+from shamrock.server.outbound_message import NodeType
+from shamrock.server.start_service import run_service
+from shamrock.util.config import load_config_cli
+from shamrock.util.default_root import DEFAULT_ROOT_PATH
 
 # See: https://bugs.python.org/issue29288
 "".encode("idna")

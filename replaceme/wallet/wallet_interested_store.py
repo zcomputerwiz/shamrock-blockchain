@@ -2,8 +2,8 @@ from typing import List, Tuple, Optional
 
 import aiosqlite
 
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.util.db_wrapper import DBWrapper
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.util.db_wrapper import DBWrapper
 
 
 class WalletInterestedStore:

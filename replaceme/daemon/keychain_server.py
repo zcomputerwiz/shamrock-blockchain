@@ -1,8 +1,8 @@
 import logging
 
 from blspy import PrivateKey
-from replaceme.cmds.init_funcs import check_keys
-from replaceme.util.keychain import Keychain
+from shamrock.cmds.init_funcs import check_keys
+from shamrock.util.keychain import Keychain
 from pathlib import Path
 from typing import Any, Dict, List, Optional, cast
 

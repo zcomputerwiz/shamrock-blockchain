@@ -12,56 +12,56 @@ from blspy import AugSchemeMPL, G1Element, PrivateKey
 from chiabip158 import PyBIP158
 from cryptography.fernet import Fernet
 
-from replaceme import __version__
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.consensus.coinbase import pool_parent_id, farmer_parent_id
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.consensus.find_fork_point import find_fork_point_in_chain
-from replaceme.full_node.weight_proof import WeightProofHandler
-from replaceme.pools.pool_puzzles import SINGLETON_LAUNCHER_HASH, solution_to_pool_state
-from replaceme.pools.pool_wallet import PoolWallet
-from replaceme.protocols.wallet_protocol import PuzzleSolutionResponse, RespondPuzzleSolution
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.program import Program
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.full_block import FullBlock
-from replaceme.types.header_block import HeaderBlock
-from replaceme.types.mempool_inclusion_status import MempoolInclusionStatus
-from replaceme.util.byte_types import hexstr_to_bytes
-from replaceme.util.db_wrapper import DBWrapper
-from replaceme.util.errors import Err
-from replaceme.util.hash import std_hash
-from replaceme.util.ints import uint32, uint64, uint128
-from replaceme.util.db_synchronous import db_synchronous_on
-from replaceme.wallet.block_record import HeaderBlockRecord
-from replaceme.wallet.cc_wallet.cc_wallet import CCWallet
-from replaceme.wallet.derivation_record import DerivationRecord
-from replaceme.wallet.derive_keys import master_sk_to_backup_sk, master_sk_to_wallet_sk
-from replaceme.wallet.key_val_store import KeyValStore
-from replaceme.wallet.rl_wallet.rl_wallet import RLWallet
-from replaceme.wallet.settings.user_settings import UserSettings
-from replaceme.wallet.trade_manager import TradeManager
-from replaceme.wallet.transaction_record import TransactionRecord
-from replaceme.wallet.util.backup_utils import open_backup_file
-from replaceme.wallet.util.transaction_type import TransactionType
-from replaceme.wallet.util.wallet_types import WalletType
-from replaceme.wallet.wallet import Wallet
-from replaceme.wallet.wallet_action import WalletAction
-from replaceme.wallet.wallet_action_store import WalletActionStore
-from replaceme.wallet.wallet_block_store import WalletBlockStore
-from replaceme.wallet.wallet_blockchain import WalletBlockchain
-from replaceme.wallet.wallet_coin_record import WalletCoinRecord
-from replaceme.wallet.wallet_coin_store import WalletCoinStore
-from replaceme.wallet.wallet_info import WalletInfo, WalletInfoBackup
-from replaceme.wallet.wallet_interested_store import WalletInterestedStore
-from replaceme.wallet.wallet_pool_store import WalletPoolStore
-from replaceme.wallet.wallet_puzzle_store import WalletPuzzleStore
-from replaceme.wallet.wallet_sync_store import WalletSyncStore
-from replaceme.wallet.wallet_transaction_store import WalletTransactionStore
-from replaceme.wallet.wallet_user_store import WalletUserStore
-from replaceme.server.server import ReplacemeServer
-from replaceme.wallet.did_wallet.did_wallet import DIDWallet
+from shamrock import __version__
+from shamrock.consensus.block_record import BlockRecord
+from shamrock.consensus.coinbase import pool_parent_id, farmer_parent_id
+from shamrock.consensus.constants import ConsensusConstants
+from shamrock.consensus.find_fork_point import find_fork_point_in_chain
+from shamrock.full_node.weight_proof import WeightProofHandler
+from shamrock.pools.pool_puzzles import SINGLETON_LAUNCHER_HASH, solution_to_pool_state
+from shamrock.pools.pool_wallet import PoolWallet
+from shamrock.protocols.wallet_protocol import PuzzleSolutionResponse, RespondPuzzleSolution
+from shamrock.types.blockchain_format.coin import Coin
+from shamrock.types.blockchain_format.program import Program
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.coin_spend import CoinSpend
+from shamrock.types.full_block import FullBlock
+from shamrock.types.header_block import HeaderBlock
+from shamrock.types.mempool_inclusion_status import MempoolInclusionStatus
+from shamrock.util.byte_types import hexstr_to_bytes
+from shamrock.util.db_wrapper import DBWrapper
+from shamrock.util.errors import Err
+from shamrock.util.hash import std_hash
+from shamrock.util.ints import uint32, uint64, uint128
+from shamrock.util.db_synchronous import db_synchronous_on
+from shamrock.wallet.block_record import HeaderBlockRecord
+from shamrock.wallet.cc_wallet.cc_wallet import CCWallet
+from shamrock.wallet.derivation_record import DerivationRecord
+from shamrock.wallet.derive_keys import master_sk_to_backup_sk, master_sk_to_wallet_sk
+from shamrock.wallet.key_val_store import KeyValStore
+from shamrock.wallet.rl_wallet.rl_wallet import RLWallet
+from shamrock.wallet.settings.user_settings import UserSettings
+from shamrock.wallet.trade_manager import TradeManager
+from shamrock.wallet.transaction_record import TransactionRecord
+from shamrock.wallet.util.backup_utils import open_backup_file
+from shamrock.wallet.util.transaction_type import TransactionType
+from shamrock.wallet.util.wallet_types import WalletType
+from shamrock.wallet.wallet import Wallet
+from shamrock.wallet.wallet_action import WalletAction
+from shamrock.wallet.wallet_action_store import WalletActionStore
+from shamrock.wallet.wallet_block_store import WalletBlockStore
+from shamrock.wallet.wallet_blockchain import WalletBlockchain
+from shamrock.wallet.wallet_coin_record import WalletCoinRecord
+from shamrock.wallet.wallet_coin_store import WalletCoinStore
+from shamrock.wallet.wallet_info import WalletInfo, WalletInfoBackup
+from shamrock.wallet.wallet_interested_store import WalletInterestedStore
+from shamrock.wallet.wallet_pool_store import WalletPoolStore
+from shamrock.wallet.wallet_puzzle_store import WalletPuzzleStore
+from shamrock.wallet.wallet_sync_store import WalletSyncStore
+from shamrock.wallet.wallet_transaction_store import WalletTransactionStore
+from shamrock.wallet.wallet_user_store import WalletUserStore
+from shamrock.server.server import ShamrockServer
+from shamrock.wallet.did_wallet.did_wallet import DIDWallet
 
 
 def get_balance_from_coin_records(coin_records: Set[WalletCoinRecord]) -> uint128:
@@ -115,7 +115,7 @@ class WalletStateManager:
     interested_store: WalletInterestedStore
     pool_store: WalletPoolStore
     weight_proof_handler: Any
-    server: ReplacemeServer
+    server: ShamrockServer
     root_path: Path
 
     @staticmethod
@@ -124,7 +124,7 @@ class WalletStateManager:
         config: Dict,
         db_path: Path,
         constants: ConsensusConstants,
-        server: ReplacemeServer,
+        server: ShamrockServer,
         root_path: Path,
         name: str = None,
     ):

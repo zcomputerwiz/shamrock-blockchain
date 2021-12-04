@@ -5,15 +5,15 @@ from typing import List
 import pytest
 from blspy import PrivateKey
 
-from replaceme.pools.pool_wallet import PoolWallet
-from replaceme.pools.pool_wallet_info import PoolState, FARMING_TO_POOL
-from replaceme.simulator.simulator_protocol import FarmNewBlockProtocol
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.full_block import FullBlock
-from replaceme.types.peer_info import PeerInfo
-from replaceme.util.ints import uint16, uint32
-from replaceme.wallet.derive_keys import master_sk_to_singleton_owner_sk
-from replaceme.wallet.wallet_state_manager import WalletStateManager
+from shamrock.pools.pool_wallet import PoolWallet
+from shamrock.pools.pool_wallet_info import PoolState, FARMING_TO_POOL
+from shamrock.simulator.simulator_protocol import FarmNewBlockProtocol
+from shamrock.types.coin_spend import CoinSpend
+from shamrock.types.full_block import FullBlock
+from shamrock.types.peer_info import PeerInfo
+from shamrock.util.ints import uint16, uint32
+from shamrock.wallet.derive_keys import master_sk_to_singleton_owner_sk
+from shamrock.wallet.wallet_state_manager import WalletStateManager
 from tests.setup_nodes import self_hostname, setup_simulators_and_wallets
 
 

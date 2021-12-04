@@ -1,19 +1,19 @@
 from typing import List, Optional, Union
 
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.consensus.blockchain_interface import BlockchainInterface
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.consensus.deficit import calculate_deficit
-from replaceme.consensus.difficulty_adjustment import get_next_sub_slot_iters_and_difficulty
-from replaceme.consensus.make_sub_epoch_summary import make_sub_epoch_summary
-from replaceme.consensus.pot_iterations import is_overflow_block
-from replaceme.types.blockchain_format.classgroup import ClassgroupElement
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.slots import ChallengeBlockInfo
-from replaceme.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from replaceme.types.full_block import FullBlock
-from replaceme.types.header_block import HeaderBlock
-from replaceme.util.ints import uint8, uint32, uint64
+from shamrock.consensus.block_record import BlockRecord
+from shamrock.consensus.blockchain_interface import BlockchainInterface
+from shamrock.consensus.constants import ConsensusConstants
+from shamrock.consensus.deficit import calculate_deficit
+from shamrock.consensus.difficulty_adjustment import get_next_sub_slot_iters_and_difficulty
+from shamrock.consensus.make_sub_epoch_summary import make_sub_epoch_summary
+from shamrock.consensus.pot_iterations import is_overflow_block
+from shamrock.types.blockchain_format.classgroup import ClassgroupElement
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.blockchain_format.slots import ChallengeBlockInfo
+from shamrock.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from shamrock.types.full_block import FullBlock
+from shamrock.types.header_block import HeaderBlock
+from shamrock.util.ints import uint8, uint32, uint64
 
 
 def block_to_block_record(

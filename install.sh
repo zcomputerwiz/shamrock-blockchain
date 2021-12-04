@@ -42,9 +42,9 @@ fi
 if [ "$(uname -m)" = "armv7l" ]; then
   echo ""
 	echo "WARNING:"
-	echo "The Replaceme Blockchain requires a 64 bit OS and this is 32 bit armv7l"
+	echo "The Shamrock Blockchain requires a 64 bit OS and this is 32 bit armv7l"
 	echo "For more information, see"
-	echo "https://github.com/Replaceme-Network/replaceme-blockchain/wiki/Raspberry-Pi"
+	echo "https://github.com/Shamrock-Network/shamrock-blockchain/wiki/Raspberry-Pi"
 	echo "Exiting."
 	exit 1
 fi
@@ -149,13 +149,13 @@ python -m pip install --extra-index-url https://pypi.chia.net/simple/ miniupnpc=
 python -m pip install -e ."${EXTRAS}" --extra-index-url https://pypi.chia.net/simple/
 
 echo ""
-echo "Replaceme blockchain install.sh complete."
+echo "Shamrock blockchain install.sh complete."
 echo "For assistance join us on Keybase in the #support chat channel:"
-echo "https://keybase.io/team/replaceme_network.public"
+echo "https://keybase.io/team/shamrock_network.public"
 echo ""
-echo "Try the Quick Start Guide to running replaceme-blockchain:"
-echo "https://github.com/Replaceme-Network/replaceme-blockchain/wiki/Quick-Start-Guide"
+echo "Try the Quick Start Guide to running shamrock-blockchain:"
+echo "https://github.com/Shamrock-Network/shamrock-blockchain/wiki/Quick-Start-Guide"
 echo ""
 echo "To install the GUI type 'sh install-gui.sh' after '. ./activate'."
 echo ""
-echo "Type '. ./activate' and then 'replaceme init' to begin."
+echo "Type '. ./activate' and then 'shamrock init' to begin."

@@ -4,26 +4,26 @@ from typing import Any, Dict, List, Optional, Set
 
 from blspy import G1Element
 
-from replaceme.consensus.cost_calculator import calculate_cost_of_program, NPCResult
-from replaceme.full_node.bundle_tools import simple_solution_generator
-from replaceme.full_node.mempool_check_conditions import get_name_puzzle_conditions
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.program import Program, SerializedProgram
-from replaceme.types.announcement import Announcement
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.coin_spend import CoinSpend
-from replaceme.types.generator_types import BlockGenerator
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.util.ints import uint8, uint32, uint64, uint128
-from replaceme.util.hash import std_hash
-from replaceme.wallet.derivation_record import DerivationRecord
-from replaceme.wallet.puzzles.p2_delegated_puzzle_or_hidden_puzzle import (
+from shamrock.consensus.cost_calculator import calculate_cost_of_program, NPCResult
+from shamrock.full_node.bundle_tools import simple_solution_generator
+from shamrock.full_node.mempool_check_conditions import get_name_puzzle_conditions
+from shamrock.types.blockchain_format.coin import Coin
+from shamrock.types.blockchain_format.program import Program, SerializedProgram
+from shamrock.types.announcement import Announcement
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.coin_spend import CoinSpend
+from shamrock.types.generator_types import BlockGenerator
+from shamrock.types.spend_bundle import SpendBundle
+from shamrock.util.ints import uint8, uint32, uint64, uint128
+from shamrock.util.hash import std_hash
+from shamrock.wallet.derivation_record import DerivationRecord
+from shamrock.wallet.puzzles.p2_delegated_puzzle_or_hidden_puzzle import (
     DEFAULT_HIDDEN_PUZZLE_HASH,
     calculate_synthetic_secret_key,
     puzzle_for_pk,
     solution_for_conditions,
 )
-from replaceme.wallet.puzzles.puzzle_utils import (
+from shamrock.wallet.puzzles.puzzle_utils import (
     make_assert_coin_announcement,
     make_assert_puzzle_announcement,
     make_assert_my_coin_id_condition,
@@ -33,13 +33,13 @@ from replaceme.wallet.puzzles.puzzle_utils import (
     make_create_coin_condition,
     make_reserve_fee_condition,
 )
-from replaceme.wallet.secret_key_store import SecretKeyStore
-from replaceme.wallet.sign_coin_spends import sign_coin_spends
-from replaceme.wallet.transaction_record import TransactionRecord
-from replaceme.wallet.util.transaction_type import TransactionType
-from replaceme.wallet.util.wallet_types import WalletType
-from replaceme.wallet.wallet_coin_record import WalletCoinRecord
-from replaceme.wallet.wallet_info import WalletInfo
+from shamrock.wallet.secret_key_store import SecretKeyStore
+from shamrock.wallet.sign_coin_spends import sign_coin_spends
+from shamrock.wallet.transaction_record import TransactionRecord
+from shamrock.wallet.util.transaction_type import TransactionType
+from shamrock.wallet.util.wallet_types import WalletType
+from shamrock.wallet.wallet_coin_record import WalletCoinRecord
+from shamrock.wallet.wallet_info import WalletInfo
 
 
 class Wallet:
@@ -437,14 +437,14 @@ class Wallet:
         await self.wallet_state_manager.add_pending_transaction(tx)
 
     # This is to be aggregated together with a coloured coin offer to ensure that the trade happens
-    async def create_spend_bundle_relative_replaceme(self, replaceme_amount: int, exclude: List[Coin]) -> SpendBundle:
+    async def create_spend_bundle_relative_shamrock(self, shamrock_amount: int, exclude: List[Coin]) -> SpendBundle:
         list_of_solutions = []
         utxos = None
 
         # If we're losing value then get coins with at least that much value
         # If we're gaining value then our amount doesn't matter
-        if replaceme_amount < 0:
-            utxos = await self.select_coins(abs(replaceme_amount), exclude)
+        if shamrock_amount < 0:
+            utxos = await self.select_coins(abs(shamrock_amount), exclude)
         else:
             utxos = await self.select_coins(0, exclude)
 
@@ -452,7 +452,7 @@ class Wallet:
 
         # Calculate output amount given sum of utxos
         spend_value = sum([coin.amount for coin in utxos])
-        replaceme_amount = spend_value + replaceme_amount
+        shamrock_amount = spend_value + shamrock_amount
 
         # Create coin solutions for each utxo
         output_created = None
@@ -460,7 +460,7 @@ class Wallet:
             puzzle = await self.puzzle_for_puzzle_hash(coin.puzzle_hash)
             if output_created is None:
                 newpuzhash = await self.get_new_puzzlehash()
-                primaries = [{"puzzlehash": newpuzhash, "amount": replaceme_amount}]
+                primaries = [{"puzzlehash": newpuzhash, "amount": shamrock_amount}]
                 solution = self.make_solution(primaries=primaries)
                 output_created = coin
             list_of_solutions.append(CoinSpend(coin, puzzle, solution))

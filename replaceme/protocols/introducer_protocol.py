@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 from typing import List
 
-from replaceme.types.peer_info import TimestampedPeerInfo
-from replaceme.util.streamable import Streamable, streamable
+from shamrock.types.peer_info import TimestampedPeerInfo
+from shamrock.util.streamable import Streamable, streamable
 
 """
 Protocol to introducer

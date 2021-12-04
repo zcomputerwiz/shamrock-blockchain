@@ -8,16 +8,16 @@ from typing import Any, Callable, Dict, List, Optional, Tuple
 
 import aiosqlite
 
-import replaceme.server.ws_connection as ws
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.full_node.coin_store import CoinStore
-from replaceme.protocols import full_node_protocol
-from replaceme.seeder.crawl_store import CrawlStore
-from replaceme.seeder.peer_record import PeerRecord, PeerReliability
-from replaceme.server.server import ReplacemeServer
-from replaceme.types.peer_info import PeerInfo
-from replaceme.util.path import mkdir, path_from_root
-from replaceme.util.ints import uint32, uint64
+import shamrock.server.ws_connection as ws
+from shamrock.consensus.constants import ConsensusConstants
+from shamrock.full_node.coin_store import CoinStore
+from shamrock.protocols import full_node_protocol
+from shamrock.seeder.crawl_store import CrawlStore
+from shamrock.seeder.peer_record import PeerRecord, PeerReliability
+from shamrock.server.server import ShamrockServer
+from shamrock.types.peer_info import PeerInfo
+from shamrock.util.path import mkdir, path_from_root
+from shamrock.util.ints import uint32, uint64
 
 log = logging.getLogger(__name__)
 
@@ -76,7 +76,7 @@ class Crawler:
         return await self.server.start_client(peer_info, on_connect)
 
     async def connect_task(self, peer):
-        async def peer_action(peer: ws.WSReplacemeConnection):
+        async def peer_action(peer: ws.WSShamrockConnection):
             peer_info = peer.get_peer_info()
             version = peer.get_version()
             if peer_info is not None and version is not None:
@@ -293,14 +293,14 @@ class Crawler:
         except Exception as e:
             self.log.error(f"Exception: {e}. Traceback: {traceback.format_exc()}.")
 
-    def set_server(self, server: ReplacemeServer):
+    def set_server(self, server: ShamrockServer):
         self.server = server
 
     def _state_changed(self, change: str):
         if self.state_changed_callback is not None:
             self.state_changed_callback(change)
 
-    async def new_peak(self, request: full_node_protocol.NewPeak, peer: ws.WSReplacemeConnection):
+    async def new_peak(self, request: full_node_protocol.NewPeak, peer: ws.WSShamrockConnection):
         try:
             peer_info = peer.get_peer_info()
             if peer_info is None:
@@ -312,7 +312,7 @@ class Crawler:
         except Exception as e:
             self.log.error(f"Exception: {e}. Traceback: {traceback.format_exc()}.")
 
-    async def on_connect(self, connection: ws.WSReplacemeConnection):
+    async def on_connect(self, connection: ws.WSShamrockConnection):
         pass
 
     def _close(self):

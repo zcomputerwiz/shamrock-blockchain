@@ -8,32 +8,32 @@ from typing import Dict, List, Optional, Set, Tuple
 from blspy import G1Element, GTElement
 from chiabip158 import PyBIP158
 
-from replaceme.util import cached_bls
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.consensus.constants import ConsensusConstants
-from replaceme.consensus.cost_calculator import NPCResult, calculate_cost_of_program
-from replaceme.full_node.bundle_tools import simple_solution_generator
-from replaceme.full_node.coin_store import CoinStore
-from replaceme.full_node.mempool import Mempool
-from replaceme.full_node.mempool_check_conditions import mempool_check_conditions_dict, get_name_puzzle_conditions
-from replaceme.full_node.pending_tx_cache import PendingTxCache
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.program import SerializedProgram
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.coin_record import CoinRecord
-from replaceme.types.condition_opcodes import ConditionOpcode
-from replaceme.types.condition_with_args import ConditionWithArgs
-from replaceme.types.mempool_inclusion_status import MempoolInclusionStatus
-from replaceme.types.mempool_item import MempoolItem
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.util.cached_bls import LOCAL_CACHE
-from replaceme.util.clvm import int_from_bytes
-from replaceme.util.condition_tools import pkm_pairs
-from replaceme.util.errors import Err, ValidationError
-from replaceme.util.generator_tools import additions_for_npc
-from replaceme.util.ints import uint32, uint64
-from replaceme.util.lru_cache import LRUCache
-from replaceme.util.streamable import recurse_jsonify
+from shamrock.util import cached_bls
+from shamrock.consensus.block_record import BlockRecord
+from shamrock.consensus.constants import ConsensusConstants
+from shamrock.consensus.cost_calculator import NPCResult, calculate_cost_of_program
+from shamrock.full_node.bundle_tools import simple_solution_generator
+from shamrock.full_node.coin_store import CoinStore
+from shamrock.full_node.mempool import Mempool
+from shamrock.full_node.mempool_check_conditions import mempool_check_conditions_dict, get_name_puzzle_conditions
+from shamrock.full_node.pending_tx_cache import PendingTxCache
+from shamrock.types.blockchain_format.coin import Coin
+from shamrock.types.blockchain_format.program import SerializedProgram
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.coin_record import CoinRecord
+from shamrock.types.condition_opcodes import ConditionOpcode
+from shamrock.types.condition_with_args import ConditionWithArgs
+from shamrock.types.mempool_inclusion_status import MempoolInclusionStatus
+from shamrock.types.mempool_item import MempoolItem
+from shamrock.types.spend_bundle import SpendBundle
+from shamrock.util.cached_bls import LOCAL_CACHE
+from shamrock.util.clvm import int_from_bytes
+from shamrock.util.condition_tools import pkm_pairs
+from shamrock.util.errors import Err, ValidationError
+from shamrock.util.generator_tools import additions_for_npc
+from shamrock.util.ints import uint32, uint64
+from shamrock.util.lru_cache import LRUCache
+from shamrock.util.streamable import recurse_jsonify
 
 log = logging.getLogger(__name__)
 
@@ -86,7 +86,7 @@ class MempoolManager:
         self.lock = asyncio.Lock()
 
         # The fee per cost must be above this amount to consider the fee "nonzero", and thus able to kick out other
-        # transactions. This prevents spam. This is equivalent to 0.055 XCH per block, or about 0.00005 XCH for two
+        # transactions. This prevents spam. This is equivalent to 0.055 SRN per block, or about 0.00005 SRN for two
         # spends.
         self.nonzero_fee_minimum_fpc = 5
 
@@ -190,7 +190,7 @@ class MempoolManager:
 
     @staticmethod
     def get_min_fee_increase() -> int:
-        # 0.00001 XCH
+        # 0.00001 SRN
         return 10000000
 
     def can_replace(

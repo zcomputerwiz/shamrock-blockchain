@@ -9,14 +9,14 @@ from typing import Dict
 import pytest
 import cProfile
 
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.full_node.full_node_api import FullNodeAPI
-from replaceme.protocols import full_node_protocol as fnp
-from replaceme.types.condition_opcodes import ConditionOpcode
-from replaceme.types.condition_with_args import ConditionWithArgs
-from replaceme.types.unfinished_block import UnfinishedBlock
-from replaceme.util.clvm import int_to_bytes
-from replaceme.util.ints import uint64
+from shamrock.consensus.block_record import BlockRecord
+from shamrock.full_node.full_node_api import FullNodeAPI
+from shamrock.protocols import full_node_protocol as fnp
+from shamrock.types.condition_opcodes import ConditionOpcode
+from shamrock.types.condition_with_args import ConditionWithArgs
+from shamrock.types.unfinished_block import UnfinishedBlock
+from shamrock.util.clvm import int_to_bytes
+from shamrock.util.ints import uint64
 from tests.wallet_tools import WalletTool
 
 from tests.connection_utils import add_dummy_connection, connect_and_get_peer

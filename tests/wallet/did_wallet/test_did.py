@@ -1,14 +1,14 @@
 import asyncio
 import pytest
-from replaceme.simulator.simulator_protocol import FarmNewBlockProtocol
-from replaceme.types.peer_info import PeerInfo
-from replaceme.util.ints import uint16, uint32, uint64
+from shamrock.simulator.simulator_protocol import FarmNewBlockProtocol
+from shamrock.types.peer_info import PeerInfo
+from shamrock.util.ints import uint16, uint32, uint64
 from tests.setup_nodes import setup_simulators_and_wallets
-from replaceme.wallet.did_wallet.did_wallet import DIDWallet
-from replaceme.types.blockchain_format.program import Program
+from shamrock.wallet.did_wallet.did_wallet import DIDWallet
+from shamrock.types.blockchain_format.program import Program
 from blspy import AugSchemeMPL
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.consensus.block_rewards import calculate_pool_reward, calculate_base_farmer_reward
+from shamrock.types.spend_bundle import SpendBundle
+from shamrock.consensus.block_rewards import calculate_pool_reward, calculate_base_farmer_reward
 from tests.time_out_assert import time_out_assert
 
 pytestmark = pytest.mark.skip("TODO: Fix tests")

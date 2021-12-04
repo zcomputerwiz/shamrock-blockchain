@@ -2,12 +2,12 @@ import asyncio
 
 from typing import Optional
 
-from replaceme.server.server import ReplacemeServer
-from replaceme.types.peer_info import PeerInfo
-from replaceme.util.network import get_host_addr
+from shamrock.server.server import ShamrockServer
+from shamrock.types.peer_info import PeerInfo
+from shamrock.util.network import get_host_addr
 
 
-def start_reconnect_task(server: ReplacemeServer, peer_info_arg: PeerInfo, log, auth: bool, prefer_ipv6: Optional[bool]):
+def start_reconnect_task(server: ShamrockServer, peer_info_arg: PeerInfo, log, auth: bool, prefer_ipv6: Optional[bool]):
     """
     Start a background task that checks connection and reconnects periodically to a peer.
     """

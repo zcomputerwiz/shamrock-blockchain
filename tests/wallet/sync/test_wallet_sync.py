@@ -4,12 +4,12 @@ import asyncio
 import pytest
 from colorlog import logging
 
-from replaceme.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
-from replaceme.protocols import full_node_protocol
-from replaceme.simulator.simulator_protocol import FarmNewBlockProtocol
-from replaceme.types.peer_info import PeerInfo
-from replaceme.util.ints import uint16, uint32
-from replaceme.wallet.wallet_state_manager import WalletStateManager
+from shamrock.consensus.block_rewards import calculate_base_farmer_reward, calculate_pool_reward
+from shamrock.protocols import full_node_protocol
+from shamrock.simulator.simulator_protocol import FarmNewBlockProtocol
+from shamrock.types.peer_info import PeerInfo
+from shamrock.util.ints import uint16, uint32
+from shamrock.wallet.wallet_state_manager import WalletStateManager
 from tests.connection_utils import disconnect_all_and_reconnect
 from tests.setup_nodes import bt, self_hostname, setup_node_and_wallet, setup_simulators_and_wallets, test_constants
 from tests.time_out_assert import time_out_assert

@@ -1,13 +1,13 @@
 from dataclasses import dataclass
 from typing import List
 
-from replaceme.consensus.cost_calculator import NPCResult
-from replaceme.types.blockchain_format.coin import Coin
-from replaceme.types.blockchain_format.program import SerializedProgram
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.spend_bundle import SpendBundle
-from replaceme.util.ints import uint64
-from replaceme.util.streamable import Streamable, streamable
+from shamrock.consensus.cost_calculator import NPCResult
+from shamrock.types.blockchain_format.coin import Coin
+from shamrock.types.blockchain_format.program import SerializedProgram
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.spend_bundle import SpendBundle
+from shamrock.util.ints import uint64
+from shamrock.util.streamable import Streamable, streamable
 
 
 @dataclass(frozen=True)

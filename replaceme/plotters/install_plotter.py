@@ -1,6 +1,6 @@
 import os
-from replaceme.plotters.bladebit import install_bladebit
-from replaceme.plotters.madmax import install_madmax
+from shamrock.plotters.bladebit import install_bladebit
+from shamrock.plotters.madmax import install_madmax
 
 
 def install_plotter(plotter, root_path):

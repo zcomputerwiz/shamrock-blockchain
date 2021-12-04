@@ -6,22 +6,22 @@ from typing import Dict, List, Optional, Tuple
 import aiosqlite
 import pytest
 
-from replaceme.consensus.block_header_validation import validate_finished_header_block
-from replaceme.consensus.block_record import BlockRecord
-from replaceme.consensus.blockchain import Blockchain
-from replaceme.consensus.default_constants import DEFAULT_CONSTANTS
-from replaceme.consensus.difficulty_adjustment import get_next_sub_slot_iters_and_difficulty
-from replaceme.consensus.full_block_to_block_record import block_to_block_record
-from replaceme.full_node.block_store import BlockStore
-from replaceme.full_node.coin_store import CoinStore
-from replaceme.server.start_full_node import SERVICE_NAME
-from replaceme.types.blockchain_format.sized_bytes import bytes32
-from replaceme.types.blockchain_format.sub_epoch_summary import SubEpochSummary
-from replaceme.util.block_cache import BlockCache
+from shamrock.consensus.block_header_validation import validate_finished_header_block
+from shamrock.consensus.block_record import BlockRecord
+from shamrock.consensus.blockchain import Blockchain
+from shamrock.consensus.default_constants import DEFAULT_CONSTANTS
+from shamrock.consensus.difficulty_adjustment import get_next_sub_slot_iters_and_difficulty
+from shamrock.consensus.full_block_to_block_record import block_to_block_record
+from shamrock.full_node.block_store import BlockStore
+from shamrock.full_node.coin_store import CoinStore
+from shamrock.server.start_full_node import SERVICE_NAME
+from shamrock.types.blockchain_format.sized_bytes import bytes32
+from shamrock.types.blockchain_format.sub_epoch_summary import SubEpochSummary
+from shamrock.util.block_cache import BlockCache
 from tests.block_tools import test_constants
-from replaceme.util.config import load_config
-from replaceme.util.default_root import DEFAULT_ROOT_PATH
-from replaceme.util.generator_tools import get_block_header
+from shamrock.util.config import load_config
+from shamrock.util.default_root import DEFAULT_ROOT_PATH
+from shamrock.util.generator_tools import get_block_header
 from tests.setup_nodes import bt
 
 try:
@@ -30,16 +30,16 @@ except ImportError:
     pass
 
 
-from replaceme.consensus.pot_iterations import calculate_iterations_quality
-from replaceme.full_node.weight_proof import (  # type: ignore
+from shamrock.consensus.pot_iterations import calculate_iterations_quality
+from shamrock.full_node.weight_proof import (  # type: ignore
     WeightProofHandler,
     _map_sub_epoch_summaries,
     _validate_sub_epoch_segments,
     _validate_summaries_weight,
 )
-from replaceme.types.full_block import FullBlock
-from replaceme.types.header_block import HeaderBlock
-from replaceme.util.ints import uint32, uint64
+from shamrock.types.full_block import FullBlock
+from shamrock.types.header_block import HeaderBlock
+from shamrock.util.ints import uint32, uint64
 
 
 @pytest.fixture(scope="session")

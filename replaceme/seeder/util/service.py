@@ -6,22 +6,22 @@ import sys
 from pathlib import Path
 from typing import Tuple
 
-from replaceme.daemon.server import pid_path_for_service
-from replaceme.util.path import mkdir
+from shamrock.daemon.server import pid_path_for_service
+from shamrock.util.path import mkdir
 
 
 def launch_service(root_path: Path, service_command) -> Tuple[subprocess.Popen, Path]:
     """
     Launch a child process.
     """
-    # set up REPLACEME_ROOT
+    # set up SHAMROCK_ROOT
     # invoke correct script
     # save away PID
 
-    # we need to pass on the possibly altered REPLACEME_ROOT
-    os.environ["REPLACEME_ROOT"] = str(root_path)
+    # we need to pass on the possibly altered SHAMROCK_ROOT
+    os.environ["SHAMROCK_ROOT"] = str(root_path)
 
-    print(f"Launching service with REPLACEME_ROOT: {os.environ['REPLACEME_ROOT']}")
+    print(f"Launching service with SHAMROCK_ROOT: {os.environ['SHAMROCK_ROOT']}")
 
     # Insert proper e
     service_array = service_command.split()
@@ -80,9 +80,9 @@ def kill_service(root_path: Path, service_name: str) -> bool:
 # determine if application is a script file or frozen exe
 if getattr(sys, "frozen", False):
     name_map = {
-        "replaceme_seeder": "replaceme_seeder",
-        "replaceme_seeder_crawler": "replaceme_seeder_crawler",
-        "replaceme_seeder_server": "replaceme_seeder_server",
+        "shamrock_seeder": "shamrock_seeder",
+        "shamrock_seeder_crawler": "shamrock_seeder_crawler",
+        "shamrock_seeder_server": "shamrock_seeder_server",
     }
 
     def executable_for_service(service_name: str) -> str:
