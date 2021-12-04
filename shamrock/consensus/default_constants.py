@@ -14,8 +14,8 @@ testnet_kwargs = {
     "DIFFICULTY_STARTING": 7,
     "DIFFICULTY_CHANGE_MAX_FACTOR": 2,  # The next difficulty is truncated to range [prev / FACTOR, prev * FACTOR]
     # These 3 constants must be changed at the same time
-    "SUB_EPOCH_BLOCKS": 3600,  # The number of blocks per sub-epoch, mainnet 3600 ~ 2 hours
-    "EPOCH_BLOCKS": 43200,  # The number of blocks per epoch, mainnet 43200 ~ 1 days. Must be multiple of SUB_EPOCH_SB
+    "SUB_EPOCH_BLOCKS": 384,  # The number of blocks per sub-epoch, mainnet 3600 ~ 2 hours
+    "EPOCH_BLOCKS": 768,  # The number of blocks per epoch, mainnet 43200 ~ 1 days. Must be multiple of SUB_EPOCH_SB
     "SIGNIFICANT_BITS": 8,  # The number of bits to look at in difficulty and min iters. The rest are zeroed
     "DISCRIMINANT_SIZE_BITS": 1024,  # Max is 1024 (based on ClassGroupElement int size)
     "NUMBER_ZERO_BITS_PLOT_FILTER": 9,  # H(plot signature of the challenge) must start with these many zeroes
@@ -28,9 +28,9 @@ testnet_kwargs = {
     # Used as the initial cc rc challenges, as well as first block back pointers, and first SES back pointer
     # We override this value based on the chain being run (testnet0, testnet1, mainnet, etc)
     # Default used for tests is std_hash(b'')
-    "GENESIS_CHALLENGE": bytes.fromhex("c8f09f8ccbaeda1d941893622b33212fbe4a46b010be75c4e3eb8e652171beb7"),
+    "GENESIS_CHALLENGE": bytes.fromhex("e7fe471110c27b12a5f17c8cc150da370396b8d704c6dd521bc7be99d4f358f6"),
     # Forks of shamrock should change this value to provide replay attack protection. This is set to mainnet genesis chall
-    "AGG_SIG_ME_ADDITIONAL_DATA": bytes.fromhex("d84f6ba0c254af584028aec0446ac6350579da6d291f7c0af27a7eb45fd9e382"),
+    "AGG_SIG_ME_ADDITIONAL_DATA": bytes.fromhex("2a6c4b6a3c1e7e13dcf1c77b4553e4d04f1b916a440f61503deedc0899490529"),
     "GENESIS_PRE_FARM_POOL_PUZZLE_HASH": bytes.fromhex(
         "d23da14695a188ae5708dd152263c4db883eb27edeb936178d4d988b8f3ce5fc"
     ),
